@@ -104,8 +104,8 @@ export default function HomePage() {
             text="He said 'one last throw' and I haven’t seen daylight in weeks."
           />
           <Quote
-            who="Your Doorbell"
-            text="He reacts to me like I’m a personal insult. Respect."
+            who="The Leash"
+            text="Every walk begins with optimism. It ends with negotiations."
           />
         </div>
       </section>

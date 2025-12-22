@@ -17,8 +17,8 @@ const merchItems: MerchItem[] = [
   {
     name: "Designer Enzo Raincoat",
     description: "So you can not only stay dry while on walks, but be stylish too.",
-    price: "$19.99",
-    priceValue: 19.99,
+    price: "$24.99",
+    priceValue: 24.99,
     image: "/images/merch/raincoat.jpg",
   },
   {
@@ -43,32 +43,18 @@ const merchItems: MerchItem[] = [
     image: "/images/merch/enzoSigned.jpg",
   },
   {
-    name: "Treat Vault Jar",
-    description: "Keep stocked at all times.",
-    price: "$9.99",
-    priceValue: 9.99,
+    name: "Enzo Signature Scent™",
+    description: "Notes of grass, dirt, and victory.",
+    price: "$49.99",
+    priceValue: 49.99,
     image: "/images/merch/jar.jpg",
   },
   {
     name: "Tennis Ball 3-Pack",
-    description: "Premium bounce for maximum fetch power.",
-    price: "$7.99",
-    priceValue: 7.99,
+    description: "Squeaks. Comforts. Disappears.",
+    price: "$9.99",
+    priceValue: 9.99,
     image: "/images/merch/tennis.jpg",
-  },
-  {
-    name: "Nerf Frisbee",
-    description: "“Durable enough to last longer than two weeks.”",
-    price: "$7.99",
-    priceValue: 7.99,
-    image: "/images/merch/frisbee.jpg",
-  },
-  {
-    name: "Bully Sticks",
-    description: "Tasty treats for when you're a good boy.",
-    price: "$14.99",
-    priceValue: 14.99,
-    image: "/images/merch/bullySticks.jpg",
   },
 ];
 

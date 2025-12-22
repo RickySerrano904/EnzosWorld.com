@@ -86,14 +86,14 @@ export default function AboutPage() {
             🐾 Chewy Gift Registry
           </a>
 
-          <a
+          {/* <a
             href="https://ko-fi.com/yourprofile"
             className="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-3 text-sm font-semibold text-black transition hover:brightness-95"
             target="_blank"
             rel="noopener noreferrer"
           >
             ☕ Buy Me a Coffee
-          </a>
+          </a> */}
         </div>
       </section>
     </main>

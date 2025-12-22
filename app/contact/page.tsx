@@ -39,23 +39,7 @@ export default function ContactPage() {
 
         <p className="mt-4 max-w-2xl text-lg text-foreground/80">
           Submit photos, pitch a blog idea, or report urgent snack-related incidents.
-          This form does not send real email (yet) — it&apos;s just for fun.
         </p>
-
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <Link
-            href="/gallery"
-            className="inline-flex items-center justify-center rounded-full bg-[var(--secondary)] px-6 py-3 text-sm font-semibold text-white transition hover:brightness-95 active:scale-[0.99]"
-          >
-            📸 Go to Gallery
-          </Link>
-          <Link
-            href="/"
-            className="inline-flex items-center justify-center rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold transition hover:bg-[var(--primary)]/20 active:scale-[0.99]"
-          >
-            🏠 Back Home
-          </Link>
-        </div>
       </header>
 
       {/* Success banner */}
@@ -83,7 +67,7 @@ export default function ContactPage() {
                 <input
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="Ricky"
+                  placeholder="sophie"
                   className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[var(--primary)]/40"
                 />
               </label>
@@ -93,7 +77,7 @@ export default function ContactPage() {
                 <input
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="ricky@email.com"
+                  placeholder="sophiecat@catlook.com"
                   className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[var(--primary)]/40"
                 />
               </label>

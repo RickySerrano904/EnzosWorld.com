@@ -19,7 +19,7 @@ export default function BlogPage() {
     <main className="space-y-6">
       <header className="space-y-2">
         <h1 className="text-4xl font-extrabold tracking-tight">
-          Blog <span className="text-[var(--secondary)]">📝</span>
+          Blog <span className="text-[var(--secondary)]">📖</span>
         </h1>
         <p className="text-foreground/70">
           Field reports from Enzo: snacks, puddles, and local feline conflicts.

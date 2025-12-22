@@ -30,14 +30,14 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="space-y-10">
-      <header className="rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow)]">
 
-        <h1 className="mt-4 text-4xl font-extrabold tracking-tight md:text-5xl">
-          Contact Enzo&apos;s Team
+
+    <main className="space-y-6">
+      <header className="space-y-2">
+        <h1 className="text-4xl font-extrabold tracking-tight">
+          Contact Enzo&apos;s Team <span className="text-[var(--secondary)]">📃</span>
         </h1>
-
-        <p className="mt-4 max-w-2xl text-lg text-foreground/80">
+        <p className="text-foreground/70">
           Submit photos, pitch a blog idea, or report urgent snack-related incidents.
         </p>
       </header>

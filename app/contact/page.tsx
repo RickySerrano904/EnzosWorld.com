@@ -106,9 +106,6 @@ export default function ContactPage() {
                 rows={6}
                 className="w-full resize-none rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[var(--primary)]/40"
               />
-              <p className="text-xs text-foreground/60">
-                Tip: include the year if it’s a gallery photo so we can file it correctly 🗂️
-              </p>
             </label>
 
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

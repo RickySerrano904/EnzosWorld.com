@@ -1,10 +1,308 @@
-export default function GalleryPage() {
+"use client";
+
+import Image from "next/image";
+import { useEffect, useMemo, useState } from "react";
+
+const imageData: Record<string, string[]> = {
+  2024: [
+    "20240401_194099.jpg",
+    "20240401_194100.jpg",
+    "20240401_194101.jpg",
+    "20240405_183303.jpg",
+    "20240405_183305.jpg",
+    "20240413_174619.jpg",
+    "20240506_063532.jpg",
+    "20240506_084626.jpg",
+    "20240506_084635.jpg",
+    "20240506_100818.jpg",
+    "20240506_184142.jpg",
+    "20240506_185620.jpg",
+    "20240507_161104.jpg",
+    "20240509_144455.jpg",
+    "20240510_115544.jpg",
+    "20240511_133602.jpg",
+    "20240706_161235.jpg",
+    "20240706_174048.jpg",
+    "20240706_174103.jpg",
+    "20240719_224045.jpg",
+    "20240720_115258.jpg",
+    "20240801_161400.jpg",
+    "20240803_130423.jpg",
+    "20240803_222243.jpg",
+    "20240808_150135.jpg",
+    "20240811_170002.jpg",
+    "20240811_203007.jpg",
+    "20240812_103032.jpg",
+    "20240813_203552.jpg",
+    "20240814_144940.jpg",
+    "20240921_164004.jpg",
+    "20240926_203121.jpg",
+    "20240926_203124.jpg",
+    "20240926_203125.jpg",
+    "20240926_203127.jpg",
+    "20240926_203132.jpg",
+    "20240926_203134.jpg",
+    "20240926_203135.jpg",
+    "20240926_203138.jpg",
+    "20240926_203141.jpg",
+    "20240926_205848.jpg",
+    "20240926_222256.jpg",
+    "20241010_104339.jpg",
+    "20241101_224501.jpg",
+    "20241101_224508.jpg",
+    "20241106_123657.jpg",
+    "20241106_124526.jpg",
+  ],
+  2025: [
+    "20250101_165930.jpg",
+    "20250101_173404.jpg",
+    "20250102_094508.jpg",
+    "20250204_071104.jpg",
+    "20250204_082846.jpg",
+    "20250204_134328.jpg",
+    "20250204_135844.jpg",
+    "20250204_140806.jpg",
+    "20250204_140839.jpg",
+    "20250204_143715.jpg",
+    "20250205_071532.jpg",
+    "20250205_071729.jpg",
+    "20250214_142406.jpg",
+    "20250223_135639.jpg",
+    "20250223_140533.jpg",
+    "20250223_140543.jpg",
+    "20250301_165013.jpg",
+    "20250301_165107.jpg",
+    "20250316_215558.jpg",
+    "20250320_202736.jpg",
+    "20250321_180054.jpg",
+    "20250322_165834.jpg",
+    "20250322_171543.jpg",
+    "20250405_093612.jpg",
+    "20250426_134723.jpg",
+    "20250517_122122.jpg",
+    "20250517_141253.jpg",
+    "20250517_141302.jpg",
+    "20250517_143543.jpg",
+    "20250628_103256.jpg",
+    "20250630_113849.jpg",
+    "20250630_113859.jpg",
+  ],
+};
+
+type SelectedImage = {
+  year: string;
+  index: number;
+  src: string;
+  alt: string;
+};
+
+function Thumb({
+  src,
+  alt,
+  onClick,
+}: {
+  src: string;
+  alt: string;
+  onClick: () => void;
+}) {
+  const [loaded, setLoaded] = useState(false);
+
   return (
-    <main>
-      <h1 className="text-3xl font-semibold">Gallery</h1>
-      <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-        Photos coming soon.
-      </p>
+    <button
+      type="button"
+      onClick={onClick}
+      className="group relative aspect-square w-full overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow)] transition hover:-translate-y-0.5 hover:shadow-lg"
+      title="View photo"
+    >
+      {!loaded && (
+        <div className="absolute inset-0 animate-pulse bg-[var(--primary)]/20" />
+      )}
+
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 25vw"
+        className={`object-cover transition duration-300 ${
+          loaded ? "opacity-100" : "opacity-0"
+        } group-hover:scale-[1.03]`}
+        onLoad={() => setLoaded(true)}
+      />
+    </button>
+  );
+}
+
+export default function GalleryPage() {
+  const [selectedImage, setSelectedImage] = useState<SelectedImage | null>(null);
+  const [collapsedYears, setCollapsedYears] = useState<Record<string, boolean>>(
+    {}
+  );
+
+  const years = useMemo(
+    () => Object.keys(imageData).sort((a, b) => Number(b) - Number(a)),
+    []
+  );
+
+  const toggleYear = (year: string) => {
+    setCollapsedYears((prev) => ({ ...prev, [year]: !prev[year] }));
+  };
+
+  const navigateImage = (offset: number) => {
+    if (!selectedImage) return;
+
+    const { year, index } = selectedImage;
+    const files = imageData[year];
+    if (!files?.length) return;
+
+    let newIndex = index + offset;
+    if (newIndex < 0) newIndex = files.length - 1;
+    if (newIndex >= files.length) newIndex = 0;
+
+    const filename = files[newIndex];
+    setSelectedImage({
+      year,
+      index: newIndex,
+      src: `/images/gallery/${year}/${filename}`,
+      alt: filename,
+    });
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!selectedImage) return;
+
+      if (e.key === "ArrowLeft") navigateImage(-1);
+      if (e.key === "ArrowRight") navigateImage(1);
+      if (e.key === "Escape") setSelectedImage(null);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedImage]);
+
+  return (
+    <main className="space-y-8">
+      <header className="space-y-2">
+        <h1 className="text-4xl font-extrabold tracking-tight">
+          Gallery <span className="text-[var(--secondary)]">📸</span>
+        </h1>
+        <p className="text-foreground/70">
+          A highly scientific collection of Enzo being adorable.
+        </p>
+      </header>
+
+      {years.map((year) => {
+        const files = imageData[year];
+        const isCollapsed = collapsedYears[year];
+
+        return (
+          <section key={year} className="space-y-4">
+            <button
+              type="button"
+              onClick={() => toggleYear(year)}
+              className="flex w-full items-center justify-between rounded-3xl border border-border bg-card px-5 py-4 text-left shadow-[var(--shadow)]"
+              aria-expanded={!isCollapsed}
+            >
+              <div className="flex items-center gap-3">
+                <span className="text-2xl font-extrabold">{year}</span>
+                <span className="rounded-full bg-[var(--primary)]/25 px-3 py-1 text-xs font-medium">
+                  {files.length} photos
+                </span>
+              </div>
+
+              <span className="text-sm font-semibold text-foreground/70">
+                {isCollapsed ? "Show" : "Hide"}
+              </span>
+            </button>
+
+            {!isCollapsed && (
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+                {files.map((filename, index) => {
+                  const src = `/images/gallery/${year}/${filename}`;
+                  return (
+                    <Thumb
+                      key={`${year}-${filename}`}
+                      src={src}
+                      alt={filename}
+                      onClick={() =>
+                        setSelectedImage({ year, index, src, alt: filename })
+                      }
+                    />
+                  );
+                })}
+              </div>
+            )}
+          </section>
+        );
+      })}
+
+      {/* Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-[999] flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div
+            className="relative w-full max-w-5xl overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow)]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close */}
+            <button
+              type="button"
+              className="absolute right-3 top-3 z-10 rounded-full border border-border bg-background/80 px-3 py-2 text-sm backdrop-blur"
+              onClick={() => setSelectedImage(null)}
+              aria-label="Close image modal"
+            >
+              ✕
+            </button>
+
+            {/* Prev */}
+            <button
+              type="button"
+              className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-border bg-background/80 px-3 py-2 text-2xl backdrop-blur"
+              onClick={(e) => {
+                e.stopPropagation();
+                navigateImage(-1);
+              }}
+              aria-label="Previous image"
+            >
+              ←
+            </button>
+
+            {/* Next */}
+            <button
+              type="button"
+              className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-border bg-background/80 px-3 py-2 text-2xl backdrop-blur"
+              onClick={(e) => {
+                e.stopPropagation();
+                navigateImage(1);
+              }}
+              aria-label="Next image"
+            >
+              →
+            </button>
+
+            <div className="relative h-[80vh] w-full bg-black">
+              <Image
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                fill
+                className="object-contain"
+                sizes="(max-width: 1024px) 100vw, 1024px"
+                priority
+              />
+            </div>
+
+            <div className="flex items-center justify-between gap-4 border-t border-border bg-background p-4 text-sm text-foreground/70">
+              <span className="truncate">{selectedImage.alt}</span>
+              <span className="shrink-0">
+                {selectedImage.year} • {selectedImage.index + 1}/
+                {imageData[selectedImage.year].length}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

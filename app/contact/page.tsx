@@ -1,8 +1,178 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import Link from "next/link";
+
+type Topic = "Gallery submission" | "Blog idea" | "Merch suggestion" | "General Enzo business";
+
 export default function ContactPage() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [topic, setTopic] = useState<Topic>("Gallery submission");
+  const [message, setMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const canSubmit = useMemo(() => {
+    return name.trim().length >= 2 && email.trim().includes("@") && message.trim().length >= 10;
+  }, [name, email, message]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Fake submit: just show success + reset
+    setSubmitted(true);
+
+    // Keep it cute, but also clear form state
+    setName("");
+    setEmail("");
+    setTopic("Gallery submission");
+    setMessage("");
+  };
+
   return (
-    <main className="p-8">
-      <h1 className="text-3xl font-semibold">Contact</h1>
-      <p className="mt-4">You can reach me at …</p>
+    <main className="space-y-10">
+      <header className="rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow)]">
+
+        <h1 className="mt-4 text-4xl font-extrabold tracking-tight md:text-5xl">
+          Contact Enzo&apos;s Team
+        </h1>
+
+        <p className="mt-4 max-w-2xl text-lg text-foreground/80">
+          Submit photos, pitch a blog idea, or report urgent snack-related incidents.
+          This form does not send real email (yet) — it&apos;s just for fun.
+        </p>
+
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <Link
+            href="/gallery"
+            className="inline-flex items-center justify-center rounded-full bg-[var(--secondary)] px-6 py-3 text-sm font-semibold text-white transition hover:brightness-95 active:scale-[0.99]"
+          >
+            📸 Go to Gallery
+          </Link>
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold transition hover:bg-[var(--primary)]/20 active:scale-[0.99]"
+          >
+            🏠 Back Home
+          </Link>
+        </div>
+      </header>
+
+      {/* Success banner */}
+      {submitted && (
+        <section className="rounded-3xl border border-border bg-[var(--accent)]/18 p-6">
+          <p className="text-sm font-semibold">✅ Message received!</p>
+          <p className="mt-1 text-sm text-foreground/75">
+            Enzo&apos;s assistant will respond in 2–3 business belly rubs.
+          </p>
+        </section>
+      )}
+
+      <section className="grid gap-6 md:grid-cols-3">
+        {/* Form */}
+        <div className="md:col-span-2 rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow)]">
+          <h2 className="text-2xl font-bold">Send a message</h2>
+          <p className="mt-2 text-sm text-foreground/70">
+            Required fields: name, email, message.
+          </p>
+
+          <form onSubmit={handleSubmit} className="mt-6 space-y-5">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <label className="space-y-2">
+                <span className="text-sm font-semibold">Your name</span>
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Ricky"
+                  className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[var(--primary)]/40"
+                />
+              </label>
+
+              <label className="space-y-2">
+                <span className="text-sm font-semibold">Email</span>
+                <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="ricky@email.com"
+                  className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[var(--primary)]/40"
+                />
+              </label>
+            </div>
+
+            <label className="space-y-2">
+              <span className="text-sm font-semibold">Topic</span>
+              <select
+                value={topic}
+                onChange={(e) => setTopic(e.target.value as Topic)}
+                className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[var(--primary)]/40"
+              >
+                <option>Gallery submission</option>
+                <option>Blog idea</option>
+                <option>Merch suggestion</option>
+                <option>General Enzo business</option>
+              </select>
+            </label>
+
+            <label className="space-y-2">
+              <span className="text-sm font-semibold">Message</span>
+              <textarea
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Example: Enzo achieved a new personal record of 7 zoomies in one minute..."
+                rows={6}
+                className="w-full resize-none rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[var(--primary)]/40"
+              />
+              <p className="text-xs text-foreground/60">
+                Tip: include the year if it’s a gallery photo so we can file it correctly 🗂️
+              </p>
+            </label>
+
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <button
+                type="submit"
+                disabled={!canSubmit}
+                className="inline-flex items-center justify-center rounded-full bg-[var(--secondary)] px-6 py-3 text-sm font-semibold text-white transition hover:brightness-95 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Send message
+              </button>
+
+              <span className="text-xs text-foreground/60">
+                {canSubmit
+                  ? "Ready to send 🐾"
+                  : "Add a name, a valid email, and a longer message to enable sending."}
+              </span>
+            </div>
+          </form>
+        </div>
+
+        {/* Sidebar */}
+        <aside className="rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow)] space-y-6">
+          <div>
+            <h3 className="text-lg font-bold">Enzo&apos;s Office Hours</h3>
+            <p className="mt-2 text-sm text-foreground/70">
+              Mon–Fri: 9am–5pm (nap adjusted) <br />
+              Sat–Sun: “Out of office” (fetch)
+            </p>
+          </div>
+
+          <div className="rounded-3xl border border-border bg-background p-5">
+            <h4 className="text-sm font-bold">Submission checklist</h4>
+            <ul className="mt-3 space-y-2 text-sm text-foreground/75">
+              <li>✅ Photo of Enzo (preferably doing something ridiculous)</li>
+              <li>✅ Short caption</li>
+              <li>✅ Year (for sorting)</li>
+              <li>✅ Optional: snack rating</li>
+            </ul>
+          </div>
+
+          <div className="rounded-3xl border border-border bg-[var(--accent)]/18 p-5">
+            <p className="text-sm font-semibold">Emergency?</p>
+            <p className="mt-2 text-sm text-foreground/75">
+              If Enzo is out of treats, please remain calm and proceed directly to the kitchen.
+            </p>
+          </div>
+        </aside>
+      </section>
     </main>
   );
 }

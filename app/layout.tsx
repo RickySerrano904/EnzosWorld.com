@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "Enzo's World",
-  description: "Personal site and projects",
+  description: "A joke website dedicated to Enzo the golden retriever",
 };
 
 export default function RootLayout({
@@ -15,9 +15,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-zinc-50 text-black dark:bg-black dark:text-zinc-50">
+      <body className="min-h-screen bg-background text-foreground">
         <Navbar />
-        <div className="mx-auto max-w-3xl px-6 py-10">{children}</div>
+
+        <main className="mx-auto max-w-4xl px-6 py-10">
+          <div className="rounded-3xl bg-card p-8 shadow-[var(--shadow)]">
+            {children}
+          </div>
+        </main>
       </body>
     </html>
   );

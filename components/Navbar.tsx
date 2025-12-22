@@ -12,21 +12,23 @@ const links = [
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-black/10 bg-white/80 backdrop-blur dark:border-white/10 dark:bg-black/60">
-      <div className="mx-auto flex h-14 max-w-3xl items-center justify-between px-6">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur">
+      <div className="mx-auto flex h-16 max-w-4xl items-center justify-between px-6">
         <Link
           href="/"
-          className="text-sm font-semibold tracking-tight text-black dark:text-zinc-50"
+          className="text-lg font-extrabold tracking-tight text-[var(--secondary)]"
         >
-          Enzo&apos;s World
+          🐾 Enzo&apos;s World
         </Link>
 
-        <nav className="flex items-center gap-1">
+        <nav className="hidden items-center gap-2 md:flex">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="rounded-md px-3 py-2 text-sm text-zinc-700 transition hover:bg-black/[.04] hover:text-black dark:text-zinc-300 dark:hover:bg-white/[.08] dark:hover:text-white"
+              className="rounded-full px-4 py-2 text-sm font-medium text-foreground/80 transition
+                         hover:bg-[color-mix(in_srgb,var(--primary)_25%,transparent)]
+                         hover:text-foreground"
             >
               {l.label}
             </Link>

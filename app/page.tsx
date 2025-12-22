@@ -41,13 +41,12 @@ export default function HomePage() {
 
           {/* Enzo photo card */}
           <div className="w-full max-w-sm">
-            <div className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow)]">
+            <div className="relative aspect-square overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow)]">
               <Image
                 src="/placeholder.jpg"
                 alt="Enzo the golden retriever"
-                width={400}
-                height={500}
-                className="h-full w-full object-cover"
+                fill
+                className="object-cover"
                 priority
               />
 

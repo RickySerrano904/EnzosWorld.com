@@ -16,18 +16,43 @@ export default function ContactPage() {
     return name.trim().length >= 2 && email.trim().includes("@") && message.trim().length >= 10;
   }, [name, email, message]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
 
-    // Fake submit: just show success + reset
-    setSubmitted(true);
+  //   // Fake submit: just show success + reset
+  //   setSubmitted(true);
 
-    // Keep it cute, but also clear form state
-    setName("");
-    setEmail("");
-    setTopic("Gallery submission");
-    setMessage("");
-  };
+  //   // Keep it cute, but also clear form state
+  //   setName("");
+  //   setEmail("");
+  //   setTopic("Gallery submission");
+  //   setMessage("");
+  // };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  setSubmitted(false);
+
+  const res = await fetch("/api/contact", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, topic, message }),
+  });
+
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    alert(data.error ?? "Failed to send message.");
+    return;
+  }
+
+  setSubmitted(true);
+  setName("");
+  setEmail("");
+  setTopic("Gallery submission");
+  setMessage("");
+};
+
 
   return (
 

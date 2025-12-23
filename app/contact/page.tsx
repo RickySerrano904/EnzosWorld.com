@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 type Topic = "Gallery submission" | "Blog idea" | "Merch suggestion" | "General Enzo business";
 
@@ -10,53 +11,60 @@ export default function ContactPage() {
   const [email, setEmail] = useState("");
   const [topic, setTopic] = useState<Topic>("Gallery submission");
   const [message, setMessage] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
   const canSubmit = useMemo(() => {
-    return name.trim().length >= 2 && email.trim().includes("@") && message.trim().length >= 10;
-  }, [name, email, message]);
-
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-
-  //   // Fake submit: just show success + reset
-  //   setSubmitted(true);
-
-  //   // Keep it cute, but also clear form state
-  //   setName("");
-  //   setEmail("");
-  //   setTopic("Gallery submission");
-  //   setMessage("");
-  // };
+    return (
+      !sending &&
+      name.trim().length >= 2 &&
+      email.trim().includes("@") &&
+      message.trim().length >= 10 &&
+      !!turnstileToken
+    );
+  }, [name, email, message, sending, turnstileToken]);
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  setSubmitted(false);
+    setSubmitted(false);
+    setSending(true);
 
-  const res = await fetch("/api/contact", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, email, topic, message }),
-  });
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          topic,
+          message,
+          website, // honeypot
+          turnstileToken,
+        }),
+      });
 
-  if (!res.ok) {
-    const data = await res.json().catch(() => ({}));
-    alert(data.error ?? "Failed to send message.");
-    return;
-  }
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error ?? "Failed to send message.");
+        return;
+      }
 
-  setSubmitted(true);
-  setName("");
-  setEmail("");
-  setTopic("Gallery submission");
-  setMessage("");
-};
-
+      setSubmitted(true);
+      setName("");
+      setEmail("");
+      setTopic("Gallery submission");
+      setMessage("");
+      setWebsite("");
+      setTurnstileToken("");
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
-
-
     <main className="space-y-6">
       <header className="space-y-2">
         <h1 className="text-4xl font-extrabold tracking-tight">
@@ -67,7 +75,6 @@ export default function ContactPage() {
         </p>
       </header>
 
-      {/* Success banner */}
       {submitted && (
         <section className="rounded-3xl border border-border bg-[var(--accent)]/18 p-6">
           <p className="text-sm font-semibold">✅ Message received!</p>
@@ -78,14 +85,21 @@ export default function ContactPage() {
       )}
 
       <section className="grid gap-6 md:grid-cols-3">
-        {/* Form */}
         <div className="md:col-span-2 rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow)]">
           <h2 className="text-2xl font-bold">Send a message</h2>
-          <p className="mt-2 text-sm text-foreground/70">
-            Required fields: name, email, message.
-          </p>
+          <p className="mt-2 text-sm text-foreground/70">Required fields: name, email, message.</p>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-5">
+            {/* Honeypot field (hidden) */}
+            <input
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+              className="hidden"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
+
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="space-y-2">
                 <span className="text-sm font-semibold">Your name</span>
@@ -93,6 +107,9 @@ export default function ContactPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="sophie"
+                  required
+                  minLength={2}
+                  maxLength={80}
                   className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[var(--primary)]/40"
                 />
               </label>
@@ -103,6 +120,9 @@ export default function ContactPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="sophiecat@catlook.com"
+                  type="email"
+                  required
+                  maxLength={254}
                   className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[var(--primary)]/40"
                 />
               </label>
@@ -129,9 +149,26 @@ export default function ContactPage() {
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Example: Enzo achieved a new personal record of 7 zoomies in one minute..."
                 rows={6}
+                required
+                minLength={10}
+                maxLength={5000}
                 className="w-full resize-none rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[var(--primary)]/40"
               />
             </label>
+
+            {/* Turnstile */}
+            <div className="pt-2">
+              <Turnstile
+                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                onSuccess={(token) => setTurnstileToken(token)}
+                onExpire={() => setTurnstileToken("")}
+                onError={() => setTurnstileToken("")}
+                options={{ theme: "auto" }}
+              />
+              <p className="mt-2 text-xs text-foreground/60">
+                {turnstileToken ? "Human verified ✅" : "Please complete the verification to enable sending."}
+              </p>
+            </div>
 
             <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <button
@@ -139,19 +176,17 @@ export default function ContactPage() {
                 disabled={!canSubmit}
                 className="inline-flex items-center justify-center rounded-full bg-[var(--secondary)] px-6 py-3 text-sm font-semibold text-white transition hover:brightness-95 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send message
+                {sending ? "Sending..." : "Send message"}
               </button>
 
               <span className="text-xs text-foreground/60">
-                {canSubmit
-                  ? "Ready to send 🐾"
-                  : "Add a name, a valid email, and a longer message to enable sending."}
+                {canSubmit ? "Ready to send 🐾" : "Add a name, a valid email, a longer message, and verify."}
               </span>
             </div>
           </form>
         </div>
 
-        {/* Sidebar */}
+        {/* Sidebar (unchanged) */}
         <aside className="rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow)] space-y-6">
           <div>
             <h3 className="text-lg font-bold">Enzo&apos;s Office Hours</h3>

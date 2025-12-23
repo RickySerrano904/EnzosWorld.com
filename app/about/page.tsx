@@ -3,18 +3,6 @@ import Link from "next/link";
 
 export default function AboutPage() {
   return (
-    // <main className="space-y-10">
-    //   <header className="rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow)]">
-
-    //     <h1 className="mt-4 text-4xl font-extrabold tracking-tight md:text-5xl">
-    //       About Enzo&apos;s World
-    //     </h1>
-
-    //     <p className="mt-4 max-w-2xl text-lg text-foreground/80">
-    //       This is a website dedicated to Enzo — a professional snack enthusiast, 
-    //       part-time chaos gremlin, and full-time best boy.
-    //     </p>
-    //   </header>
 
     <main className="space-y-6">
       <header className="space-y-2">
@@ -26,8 +14,6 @@ export default function AboutPage() {
           part-time chaos gremlin, and full-time best boy.
         </p>
       </header>
-
-
 
       <section className="grid gap-6 md:grid-cols-3">
         <InfoCard
@@ -85,15 +71,6 @@ export default function AboutPage() {
           >
             🐾 Chewy Gift Registry
           </a>
-
-          {/* <a
-            href="https://ko-fi.com/yourprofile"
-            className="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-3 text-sm font-semibold text-black transition hover:brightness-95"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            ☕ Buy Me a Coffee
-          </a> */}
         </div>
       </section>
     </main>

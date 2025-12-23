@@ -21,22 +21,6 @@ export default function HomePage() {
               retriever, Enzo — toy enthusiast, professional snack eater, and
               lover of playtime.
             </p>
-
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/gallery"
-                className="inline-flex items-center justify-center rounded-full bg-[var(--secondary)] px-6 py-3 text-sm font-semibold text-white transition hover:brightness-95 active:scale-[0.99]"
-              >
-                📸 View the Gallery
-              </Link>
-
-              <Link
-                href="/blog"
-                className="inline-flex items-center justify-center rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold transition hover:bg-[var(--primary)]/20 active:scale-[0.99]"
-              >
-                ✍️ Read the Blog
-              </Link>
-            </div>
           </div>
 
           {/* Enzo photo card */}

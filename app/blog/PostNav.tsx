@@ -21,30 +21,37 @@ export default function PostNav() {
 
   return (
     <nav className="grid gap-3 pt-10 sm:grid-cols-2">
-      {/* Previous */}
-      {prevPost ? (
-        <Link
-          href={`/blog/${prevPost.slug}`}
-          className="group rounded-3xl border border-border bg-card p-5 shadow-[var(--shadow)] transition hover:-translate-y-0.5 hover:shadow-lg"
+    {/* Previous */}
+    {prevPost ? (
+    <Link
+        href={`/blog/${prevPost.slug}`}
+        className="group rounded-3xl border border-border bg-card p-5 shadow-[var(--shadow)] transition hover:-translate-y-0.5 hover:shadow-lg"
+    >
+        <div className="flex items-center gap-3">
+        <span
+            className="text-xl transition-transform duration-300 group-hover:-translate-x-1 group-hover:-rotate-6 group-hover:scale-110"
+            aria-hidden="true"
         >
-          <div className="flex items-center gap-3">
-            <span
-              className="text-xl transition-transform duration-300 group-hover:-translate-x-1 group-hover:-rotate-6"
-              aria-hidden="true"
-            >
-              ←
-            </span>
-            <div className="min-w-0">
-              <p className="text-xs uppercase tracking-wider text-foreground/60">
-                Previous
-              </p>
-              <p className="truncate text-sm font-bold">{prevPost.title}</p>
-            </div>
-          </div>
-        </Link>
-      ) : (
-        <div className="hidden sm:block" />
-      )}
+            ←
+        </span>
+        <div className="min-w-0">
+            <p className="text-xs uppercase tracking-wider text-foreground/60">
+            Previous
+            </p>
+            <p className="truncate text-sm font-bold">{prevPost.title}</p>
+        </div>
+        </div>
+
+        {/* Previous swoosh (fixed for real) */}
+        <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-[var(--primary)]/15">
+            <div className="h-full w-1/3 translate-x-[301%] rounded-full bg-[var(--primary)]/60 transition-transform duration-500 group-hover:-translate-x-[20%]" />
+        </div>
+
+    </Link>
+    ) : (
+    <div className="hidden sm:block" />
+    )}
+
 
       {/* Next */}
       {nextPost ? (

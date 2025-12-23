@@ -1,0 +1,18 @@
+export type BlogPostMeta = {
+  slug: string;
+  title: string;
+  date: string;
+};
+
+export const posts: BlogPostMeta[] = [
+  { slug: "i-call-shotgun", title: "I Call Shotgun!", date: "April 13, 2024" },
+  { slug: "the-feline-menace", title: "The Feline Menace", date: "May 06, 2024" },
+  { slug: "archaeologist-enzo", title: "Archaeologist Enzo", date: "June 12, 2024" },
+  { slug: "my-mistake-but-also-worth-it", title: "My Mistake, But Also Worth It", date: "July 22, 2024" },
+  { slug: "smelled-everything-tasted-most-things", title: "Smelled Everything, Tasted Most Things", date: "August 25, 2024" },
+  { slug: "fear-the-fluffasaurus", title: "Fear the Fluffasaurus", date: "October 31, 2024" },
+  { slug: "worlds-biggest-stick", title: "World's Biggest Stick", date: "January 5, 2025" },
+  { slug: "it-called-to-me", title: "It Called to Me", date: "March 12, 2025" },
+  { slug: "bark-sip-repeat", title: "Bark, Sip, Repeat", date: "May 19, 2025" },
+  { slug: "business-in-the-front-puddles-in-the-back", title: "Business in the Front, Puddles in the Back", date: "June 12, 2025" },
+];

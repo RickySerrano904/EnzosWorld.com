@@ -141,7 +141,7 @@ export default function GalleryPage() {
     {}
   );
 
-  // ✅ 2024 above 2025 (ascending)
+  // 2024 above 2025 (ascending)
   const years = useMemo(
     () => Object.keys(imageData).sort((a, b) => Number(a) - Number(b)),
     []
@@ -176,7 +176,7 @@ export default function GalleryPage() {
     const filename = files[index];
     const src = imgPath(year, filename);
 
-    // ✅ preload clicked image + neighbors for fast open + fast arrows
+    // preload clicked image + neighbors for fast open + fast arrows
     preload(src);
     preloadNeighbors(year, index);
 
@@ -197,7 +197,7 @@ export default function GalleryPage() {
       const filename = files[newIndex];
       const src = imgPath(prev.year, filename);
 
-      // ✅ preload neighbors on every move, so nav stays snappy
+      // preload neighbors on every move, so nav stays snappy
       preload(src);
       preloadNeighbors(prev.year, newIndex);
 

@@ -47,7 +47,7 @@ const merchItems: MerchItem[] = [
     description: "Notes of grass, dirt, and victory.",
     price: "$49.99",
     priceValue: 49.99,
-    image: "/images/merch/jar.jpg",
+    image: "/images/merch/perfumee.jpg",
   },
   {
     name: "Tennis Ball 3-Pack",

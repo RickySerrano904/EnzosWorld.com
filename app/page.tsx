@@ -43,7 +43,7 @@ export default function HomePage() {
           <div className="w-full max-w-sm">
             <div className="relative aspect-square overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow)]">
               <Image
-                src="/placeholder.jpg"
+                src="/images/home/homeImage.jpg"
                 alt="Enzo the golden retriever"
                 fill
                 className="object-cover"

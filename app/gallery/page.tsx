@@ -89,6 +89,9 @@ const imageData: Record<string, string[]> = {
   ],
 };
 
+const imgPath = (year: string, filename: string) =>
+  `/images/gallery/${year}/${filename}`;
+
 type SelectedImage = {
   year: string;
   index: number;
@@ -138,8 +141,9 @@ export default function GalleryPage() {
     {}
   );
 
+  // ✅ 2024 above 2025 (ascending)
   const years = useMemo(
-    () => Object.keys(imageData).sort((a, b) => Number(b) - Number(a)),
+    () => Object.keys(imageData).sort((a, b) => Number(a) - Number(b)),
     []
   );
 
@@ -147,23 +151,57 @@ export default function GalleryPage() {
     setCollapsedYears((prev) => ({ ...prev, [year]: !prev[year] }));
   };
 
-  const navigateImage = (offset: number) => {
-    if (!selectedImage) return;
+  const preload = (src: string) => {
+    // Preload modal image so click feels instant
+    if (typeof window === "undefined") return;
+    const img = new window.Image();
+    img.src = src;
+  };
 
-    const { year, index } = selectedImage;
+  const preloadNeighbors = (year: string, index: number) => {
     const files = imageData[year];
     if (!files?.length) return;
 
-    let newIndex = index + offset;
-    if (newIndex < 0) newIndex = files.length - 1;
-    if (newIndex >= files.length) newIndex = 0;
+    const prev = files[(index - 1 + files.length) % files.length];
+    const next = files[(index + 1) % files.length];
 
-    const filename = files[newIndex];
-    setSelectedImage({
-      year,
-      index: newIndex,
-      src: `/images/gallery/${year}/${filename}`,
-      alt: filename,
+    preload(imgPath(year, prev));
+    preload(imgPath(year, next));
+  };
+
+  const openImage = (year: string, index: number) => {
+    const files = imageData[year];
+    if (!files?.length) return;
+
+    const filename = files[index];
+    const src = imgPath(year, filename);
+
+    // ✅ preload clicked image + neighbors for fast open + fast arrows
+    preload(src);
+    preloadNeighbors(year, index);
+
+    setSelectedImage({ year, index, src, alt: filename });
+  };
+
+  const navigateImage = (offset: number) => {
+    setSelectedImage((prev) => {
+      if (!prev) return prev;
+
+      const files = imageData[prev.year];
+      if (!files?.length) return prev;
+
+      let newIndex = prev.index + offset;
+      if (newIndex < 0) newIndex = files.length - 1;
+      if (newIndex >= files.length) newIndex = 0;
+
+      const filename = files[newIndex];
+      const src = imgPath(prev.year, filename);
+
+      // ✅ preload neighbors on every move, so nav stays snappy
+      preload(src);
+      preloadNeighbors(prev.year, newIndex);
+
+      return { year: prev.year, index: newIndex, src, alt: filename };
     });
   };
 
@@ -218,15 +256,13 @@ export default function GalleryPage() {
             {!isCollapsed && (
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
                 {files.map((filename, index) => {
-                  const src = `/images/gallery/${year}/${filename}`;
+                  const src = imgPath(year, filename);
                   return (
                     <Thumb
                       key={`${year}-${filename}`}
                       src={src}
                       alt={filename}
-                      onClick={() =>
-                        setSelectedImage({ year, index, src, alt: filename })
-                      }
+                      onClick={() => openImage(year, index)}
                     />
                   );
                 })}
@@ -246,7 +282,6 @@ export default function GalleryPage() {
             className="relative w-full max-w-5xl overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow)]"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close */}
             <button
               type="button"
               className="absolute right-3 top-3 z-10 rounded-full border border-border bg-background/80 px-3 py-2 text-sm backdrop-blur"
@@ -256,7 +291,6 @@ export default function GalleryPage() {
               ✕
             </button>
 
-            {/* Prev */}
             <button
               type="button"
               className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-border bg-background/80 px-3 py-2 text-2xl backdrop-blur"
@@ -269,7 +303,6 @@ export default function GalleryPage() {
               ←
             </button>
 
-            {/* Next */}
             <button
               type="button"
               className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-border bg-background/80 px-3 py-2 text-2xl backdrop-blur"
@@ -290,6 +323,7 @@ export default function GalleryPage() {
                 className="object-contain"
                 sizes="(max-width: 1024px) 100vw, 1024px"
                 priority
+                loading="eager"
               />
             </div>
 

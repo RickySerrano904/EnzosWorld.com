@@ -65,7 +65,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="space-y-6">
+    <main className="space-y-6 overflow-x-hidden">
       <header className="space-y-2">
         <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
           Contact Enzo&apos;s Team <span className="text-secondary">📃</span>
@@ -84,9 +84,9 @@ export default function ContactPage() {
         </section>
       )}
 
-      <section className="grid gap-6 md:grid-cols-3">
+      <section className="grid gap-6 md:grid-cols-3 overflow-x-hidden">
         {/* Sidebar: first on mobile, sticky on desktop */}
-        <aside className="order-first md:order-0 self-start rounded-3xl border border-border bg-card p-5 sm:p-6 lg:p-8 shadow-none sm:shadow-(--shadow) space-y-6 md:sticky md:top-6">
+        <aside className="order-first md:order-0 self-start min-w-0 rounded-3xl border border-border bg-card p-5 sm:p-6 lg:p-8 shadow-none sm:shadow-(--shadow) space-y-6 md:sticky md:top-6">
           <div className="space-y-2">
             <h3 className="text-lg font-bold">Enzo&apos;s Office Hours</h3>
             <p className="text-sm text-foreground/70">
@@ -120,7 +120,7 @@ export default function ContactPage() {
         </aside>
 
         {/* Form: tighter padding on mobile, unchanged on desktop */}
-        <div className="md:col-span-2 rounded-3xl border border-border bg-card p-5 sm:p-6 lg:p-8 shadow-none sm:shadow-(--shadow)">
+        <div className="md:col-span-2 min-w-0 rounded-3xl border border-border bg-card p-5 sm:p-6 lg:p-8 shadow-none sm:shadow-(--shadow)">
           <h2 className="text-xl sm:text-2xl font-bold">Send a message</h2>
           <p className="mt-2 text-sm text-foreground/70">Required fields: name, email, message.</p>
 
@@ -136,7 +136,7 @@ export default function ContactPage() {
             />
 
             <div className="grid gap-4 sm:grid-cols-2">
-              <label className="space-y-2">
+              <label className="space-y-2 min-w-0">
                 <span className="text-sm font-semibold">Your name</span>
                 <input
                   value={name}
@@ -145,11 +145,11 @@ export default function ContactPage() {
                   required
                   minLength={2}
                   maxLength={80}
-                  className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-(--primary)/40"
+                  className="w-full min-w-0 rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-(--primary)/40"
                 />
               </label>
 
-              <label className="space-y-2">
+              <label className="space-y-2 min-w-0">
                 <span className="text-sm font-semibold">Email</span>
                 <input
                   value={email}
@@ -158,17 +158,17 @@ export default function ContactPage() {
                   type="email"
                   required
                   maxLength={254}
-                  className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-(--primary)/40"
+                  className="w-full min-w-0 rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-(--primary)/40"
                 />
               </label>
             </div>
 
-            <label className="space-y-2">
+            <label className="space-y-2 min-w-0">
               <span className="text-sm font-semibold">Topic</span>
               <select
                 value={topic}
                 onChange={(e) => setTopic(e.target.value as Topic)}
-                className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-(--primary)/40"
+                className="w-full min-w-0 rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-(--primary)/40"
               >
                 <option>Gallery submission</option>
                 <option>Blog idea</option>
@@ -177,7 +177,7 @@ export default function ContactPage() {
               </select>
             </label>
 
-            <label className="space-y-2">
+            <label className="space-y-2 min-w-0">
               <span className="text-sm font-semibold">Message</span>
               <textarea
                 value={message}
@@ -187,31 +187,30 @@ export default function ContactPage() {
                 required
                 minLength={10}
                 maxLength={5000}
-                className="w-full resize-none rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-(--primary)/40"
+                className="w-full min-w-0 resize-none rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-(--primary)/40"
               />
             </label>
 
-    {/* Turnstile */}
-    <div className="pt-2">
-      <div className="w-full overflow-hidden rounded-2xl border border-border bg-background p-3">
-        <div className="flex justify-center">
-          <div className="max-w-full overflow-x-auto">
-            <Turnstile
-              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-              onSuccess={(token) => setTurnstileToken(token)}
-              onExpire={() => setTurnstileToken("")}
-              onError={() => setTurnstileToken("")}
-              options={{ theme: "auto" }}
-            />
-          </div>
-        </div>
-      </div>
+            {/* Turnstile */}
+            <div className="pt-2">
+              <div className="w-full max-w-full overflow-hidden rounded-2xl border border-border bg-background p-3">
+                <div className="max-w-full overflow-x-auto">
+                  <div className="flex justify-center">
+                    <Turnstile
+                      siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                      onSuccess={(token) => setTurnstileToken(token)}
+                      onExpire={() => setTurnstileToken("")}
+                      onError={() => setTurnstileToken("")}
+                      options={{ theme: "auto" }}
+                    />
+                  </div>
+                </div>
+              </div>
 
-      <p className="mt-2 text-xs text-foreground/60">
-        {turnstileToken ? "Human verified ✅" : "Please complete the verification to enable sending."}
-      </p>
-    </div>
-
+              <p className="mt-2 text-xs text-foreground/60">
+                {turnstileToken ? "Human verified ✅" : "Please complete the verification to enable sending."}
+              </p>
+            </div>
 
             <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <button

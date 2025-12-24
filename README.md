@@ -10,26 +10,17 @@ The goal of this project is to combine a polished user interface with a fun, per
 
 ## Features
 
-Gallery
-A curated collection of Enzo photos, organized and displayed with a clean, responsive layout.
+1. Gallery: A curated collection of Enzo photos, organized and displayed with a clean, responsive layout.
 
-Blog
-Lighthearted blog posts written from Enzo’s perspective, rendered using modern routing and layout patterns.
+2. Blog: Lighthearted blog posts written from Enzo’s perspective, rendered using modern routing and layout patterns.
 
-Merch
-A just-for-fun merch section designed to showcase layout consistency and UI patterns.
+3. Merch: A just-for-fun merch section designed to showcase layout consistency and UI patterns.
 
-Contact Form
-A fully implemented contact form with:
-- Client-side validation
-- Spam protection using Cloudflare Turnstile
-- A honeypot field to reduce automated submissions
+4. Contact Form: A fully implemented contact form with client-side validation, spam protection using Cloudflare Turnstile, and a honeypot field to reduce automated submissions.
 
-Responsive Design
-The entire site is optimized for both desktop and mobile devices, with layouts that adapt cleanly across screen sizes.
+5. Responsive Design: The entire site is optimized for both desktop and mobile devices, with layouts that adapt cleanly across screen sizes.
 
-Custom Theme
-A warm, friendly visual theme built with reusable card components and consistent spacing, shadows, and typography.
+6. Custom Theme: A warm, friendly visual theme built with reusable card components and consistent spacing, shadows, and typography.
 
 ## Tech Stack
 

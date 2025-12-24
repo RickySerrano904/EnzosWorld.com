@@ -32,74 +32,87 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-card/90 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link
-          href="/"
-          className="text-lg font-extrabold tracking-tight text-[var(--secondary)]"
-        >
-          🐾 Enzo&apos;s World
-        </Link>
+    <header className="sticky top-0 z-50 border-b border-border bg-card">
+      {/* Make header a positioning context */}
+      <div className="relative">
+        <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6 lg:px-8">
+          <Link
+            href="/"
+            className="text-lg font-extrabold tracking-tight text-[var(--secondary)]"
+          >
+            🐾 Enzo&apos;s World
+          </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden items-center gap-2 md:flex">
-          {links.map((l) => {
-            const active = pathname === l.href;
-            return (
-              <Link
-                key={l.href}
-                href={l.href}
-                className={[
-                  "rounded-full px-4 py-2 text-sm font-medium transition",
-                  active
-                    ? "bg-[color-mix(in_srgb,var(--primary)_28%,transparent)] text-foreground"
-                    : "text-foreground/80 hover:bg-[color-mix(in_srgb,var(--primary)_25%,transparent)] hover:text-foreground",
-                ].join(" ")}
-              >
-                {l.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        {/* Mobile button */}
-        <button
-          type="button"
-          className="md:hidden inline-flex items-center justify-center rounded-full border border-border bg-background/60 px-3 py-2 text-sm font-semibold"
-          aria-label="Open menu"
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? "Close" : "Menu"}
-        </button>
-      </div>
-
-      {/* Mobile dropdown */}
-      {open && (
-        <div className="md:hidden border-t border-border bg-card/95 backdrop-blur">
-          <nav className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-3">
-            <div className="grid gap-2">
-              {links.map((l) => {
-                const active = pathname === l.href;
-                return (
-                  <Link
-                    key={l.href}
-                    href={l.href}
-                    className={[
-                      "rounded-2xl px-4 py-3 text-sm font-semibold transition",
-                      active
-                        ? "bg-[color-mix(in_srgb,var(--primary)_28%,transparent)] text-foreground"
-                        : "text-foreground/85 hover:bg-[color-mix(in_srgb,var(--primary)_22%,transparent)] hover:text-foreground",
-                    ].join(" ")}
-                  >
-                    {l.label}
-                  </Link>
-                );
-              })}
-            </div>
+          {/* Desktop nav */}
+          <nav className="hidden items-center gap-2 md:flex">
+            {links.map((l) => {
+              const active = pathname === l.href;
+              return (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className={[
+                    "rounded-full px-4 py-2 text-sm font-medium transition",
+                    active
+                      ? "bg-[color-mix(in_srgb,var(--primary)_28%,transparent)] text-foreground"
+                      : "text-foreground/80 hover:bg-[color-mix(in_srgb,var(--primary)_25%,transparent)] hover:text-foreground",
+                  ].join(" ")}
+                >
+                  {l.label}
+                </Link>
+              );
+            })}
           </nav>
+
+          {/* Mobile button */}
+          <button
+            type="button"
+            className="md:hidden inline-flex items-center justify-center rounded-full border border-border bg-background px-3 py-2 text-sm font-semibold"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? "Close" : "Menu"}
+          </button>
         </div>
-      )}
+
+        {/* Mobile overlay + dropdown (absolute so header height never changes) */}
+        {open && (
+          <>
+            {/* Click-away overlay */}
+            <button
+              aria-label="Close menu overlay"
+              className="fixed inset-0 z-40 bg-black/20 md:hidden"
+              onClick={() => setOpen(false)}
+            />
+
+            {/* Dropdown panel */}
+            <div className="absolute left-0 right-0 top-full z-50 md:hidden border-b border-border bg-card shadow-[var(--shadow)]">
+              <nav className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-3">
+                <div className="grid gap-2">
+                  {links.map((l) => {
+                    const active = pathname === l.href;
+                    return (
+                      <Link
+                        key={l.href}
+                        href={l.href}
+                        className={[
+                          "rounded-2xl px-4 py-3 text-sm font-semibold transition",
+                          active
+                            ? "bg-[color-mix(in_srgb,var(--primary)_28%,transparent)] text-foreground"
+                            : "text-foreground/85 hover:bg-[color-mix(in_srgb,var(--primary)_22%,transparent)] hover:text-foreground",
+                        ].join(" ")}
+                      >
+                        {l.label}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </nav>
+            </div>
+          </>
+        )}
+      </div>
     </header>
   );
 }

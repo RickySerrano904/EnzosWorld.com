@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html, body {
+  background: var(--bg);
+}
+
 /* Enzo's World theme tokens */
 :root {
   /* Core surfaces */

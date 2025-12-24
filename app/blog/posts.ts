@@ -5,7 +5,6 @@ export type BlogPostMeta = {
 };
 
 export const posts: BlogPostMeta[] = [
-  { slug: "i-call-shotgun", title: "I Call Shotgun!", date: "April 13, 2024" },
   { slug: "the-feline-menace", title: "The Feline Menace", date: "May 06, 2024" },
   { slug: "archaeologist-enzo", title: "Archaeologist Enzo", date: "June 12, 2024" },
   { slug: "my-mistake-but-also-worth-it", title: "My Mistake, But Also Worth It", date: "July 22, 2024" },

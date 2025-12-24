@@ -99,12 +99,13 @@ export default function ContactPage() {
           }
         />
         <InfoCard
-          title="Emergency?"
-          emoji="🚨"
+          title="What can you send?"
+          emoji="🤔"
           text={
             <>
-              If Enzo is out of treats, please remain calm and proceed directly to the kitchen.
-            </>
+          Feel free to submit photos for the gallery, blog ideas, story requests,
+           merch suggestions, or any general questions for Enzo’s humans.            
+          </>
           }
         />
       </section>

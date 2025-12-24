@@ -1,14 +1,14 @@
-##Enzo’s World
+# Enzo’s World
 
 Enzo’s World is a clean, playful web application dedicated to Enzo — a professional snack enthusiast, part-time chaos gremlin, and full-time good boy.
 
 The site includes a photo gallery, blog posts, a fictional merch section, and a contact form for submissions, ideas, or general inquiries. While the tone is lighthearted, the project emphasizes solid frontend architecture, responsive design, and practical form handling.
 
-##Overview
+## Overview
 
 The goal of this project is to combine a polished user interface with a fun, personality-driven theme. The layout is intentionally card-based and consistent across pages, with a strong focus on spacing, readability, and responsiveness.
 
-##Features
+## Features
 
 Gallery
 A curated collection of Enzo photos, organized and displayed with a clean, responsive layout.
@@ -21,9 +21,9 @@ A just-for-fun merch section designed to showcase layout consistency and UI patt
 
 Contact Form
 A fully implemented contact form with:
--Client-side validation
--Spam protection using Cloudflare Turnstile
--A honeypot field to reduce automated submissions
+- Client-side validation
+- Spam protection using Cloudflare Turnstile
+- A honeypot field to reduce automated submissions
 
 Responsive Design
 The entire site is optimized for both desktop and mobile devices, with layouts that adapt cleanly across screen sizes.
@@ -31,9 +31,9 @@ The entire site is optimized for both desktop and mobile devices, with layouts t
 Custom Theme
 A warm, friendly visual theme built with reusable card components and consistent spacing, shadows, and typography.
 
-##Tech Stack
+## Tech Stack
 
-Framework: Next.js (App Router)
-Library: React
-Language: TypeScript
-Styling: Tailwind CSS (v4)
+- Framework: Next.js (App Router)
+- Library: React
+- Language: TypeScript
+- Styling: Tailwind CSS (v4)

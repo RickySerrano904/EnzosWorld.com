@@ -24,7 +24,7 @@ The goal of this project is to combine a polished user interface with a fun, per
 
 ## Tech Stack
 
-- Framework: Next.js (App Router)
+- Framework: Next.js
 - Library: React
 - Language: TypeScript
 - Styling: Tailwind CSS (v4)

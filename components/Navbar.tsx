@@ -38,7 +38,7 @@ export default function Navbar() {
         <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link
             href="/"
-            className="text-lg font-extrabold tracking-tight text-secondary"
+className="text-lg sm:text-xl font-extrabold tracking-tight text-secondary"
           >
             🐾 Enzo&apos;s World
           </Link>

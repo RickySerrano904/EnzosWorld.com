@@ -70,7 +70,7 @@ export default function ContactPage() {
     <main className="space-y-6">
       <header className="space-y-2">
         <h1 className="text-4xl font-extrabold tracking-tight">
-          Contact Enzo&apos;s Team <span className="text-secondary">📃</span>
+          Contact Enzo&apos;s Team <span className="text-secondary">📞</span>
         </h1>
         <p className="text-foreground/70">
           Submit photos, pitch a blog idea, or report urgent snack-related incidents.

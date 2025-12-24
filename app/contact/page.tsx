@@ -191,19 +191,27 @@ export default function ContactPage() {
               />
             </label>
 
-            {/* Turnstile */}
-            <div className="pt-2">
-              <Turnstile
-                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-                onSuccess={(token) => setTurnstileToken(token)}
-                onExpire={() => setTurnstileToken("")}
-                onError={() => setTurnstileToken("")}
-                options={{ theme: "auto" }}
-              />
-              <p className="mt-2 text-xs text-foreground/60">
-                {turnstileToken ? "Human verified ✅" : "Please complete the verification to enable sending."}
-              </p>
-            </div>
+    {/* Turnstile */}
+    <div className="pt-2">
+      <div className="w-full overflow-hidden rounded-2xl border border-border bg-background p-3">
+        <div className="flex justify-center">
+          <div className="max-w-full overflow-x-auto">
+            <Turnstile
+              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+              onSuccess={(token) => setTurnstileToken(token)}
+              onExpire={() => setTurnstileToken("")}
+              onError={() => setTurnstileToken("")}
+              options={{ theme: "auto" }}
+            />
+          </div>
+        </div>
+      </div>
+
+      <p className="mt-2 text-xs text-foreground/60">
+        {turnstileToken ? "Human verified ✅" : "Please complete the verification to enable sending."}
+      </p>
+    </div>
+
 
             <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <button

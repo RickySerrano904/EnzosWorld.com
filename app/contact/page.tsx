@@ -68,7 +68,7 @@ export default function ContactPage() {
     <main className="space-y-6">
       <header className="space-y-2">
         <h1 className="text-4xl font-extrabold tracking-tight">
-          Contact Enzo&apos;s Team <span className="text-[var(--secondary)]">📃</span>
+          Contact Enzo&apos;s Team <span className="text-secondary">📃</span>
         </h1>
         <p className="text-foreground/70">
           Submit photos, pitch a blog idea, or report urgent snack-related incidents.
@@ -76,7 +76,7 @@ export default function ContactPage() {
       </header>
 
       {submitted && (
-        <section className="rounded-3xl border border-border bg-[var(--accent)]/18 p-6">
+        <section className="rounded-3xl border border-border bg-(--accent)/18 p-6">
           <p className="text-sm font-semibold">✅ Message received!</p>
           <p className="mt-1 text-sm text-foreground/75">
             Enzo&apos;s assistant will respond in 2–3 business belly rubs.
@@ -85,7 +85,7 @@ export default function ContactPage() {
       )}
 
       <section className="grid gap-6 md:grid-cols-3">
-        <div className="md:col-span-2 rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow)]">
+        <div className="md:col-span-2 rounded-3xl border border-border bg-card p-8 shadow-(--shadow)">
           <h2 className="text-2xl font-bold">Send a message</h2>
           <p className="mt-2 text-sm text-foreground/70">Required fields: name, email, message.</p>
 
@@ -110,7 +110,7 @@ export default function ContactPage() {
                   required
                   minLength={2}
                   maxLength={80}
-                  className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[var(--primary)]/40"
+                  className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-(--primary)/40"
                 />
               </label>
 
@@ -123,7 +123,7 @@ export default function ContactPage() {
                   type="email"
                   required
                   maxLength={254}
-                  className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[var(--primary)]/40"
+                  className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-(--primary)/40"
                 />
               </label>
             </div>
@@ -133,7 +133,7 @@ export default function ContactPage() {
               <select
                 value={topic}
                 onChange={(e) => setTopic(e.target.value as Topic)}
-                className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[var(--primary)]/40"
+                className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-(--primary)/40"
               >
                 <option>Gallery submission</option>
                 <option>Blog idea</option>
@@ -152,7 +152,7 @@ export default function ContactPage() {
                 required
                 minLength={10}
                 maxLength={5000}
-                className="w-full resize-none rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[var(--primary)]/40"
+                className="w-full resize-none rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-(--primary)/40"
               />
             </label>
 
@@ -174,7 +174,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={!canSubmit}
-                className="inline-flex items-center justify-center rounded-full bg-[var(--secondary)] px-6 py-3 text-sm font-semibold text-white transition hover:brightness-95 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center justify-center rounded-full bg-secondary px-6 py-3 text-sm font-semibold text-white transition hover:brightness-95 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {sending ? "Sending..." : "Send message"}
               </button>
@@ -187,7 +187,7 @@ export default function ContactPage() {
         </div>
 
         {/* Sidebar (unchanged) */}
-        <aside className="rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow)] space-y-6">
+        <aside className="rounded-3xl border border-border bg-card p-8 shadow-(--shadow) space-y-6">
           <div>
             <h3 className="text-lg font-bold">Enzo&apos;s Office Hours</h3>
             <p className="mt-2 text-sm text-foreground/70">
@@ -206,7 +206,7 @@ export default function ContactPage() {
             </ul>
           </div>
 
-          <div className="rounded-3xl border border-border bg-[var(--accent)]/18 p-5">
+          <div className="rounded-3xl border border-border bg-(--accent)/18 p-5">
             <p className="text-sm font-semibold">Emergency?</p>
             <p className="mt-2 text-sm text-foreground/75">
               If Enzo is out of treats, please remain calm and proceed directly to the kitchen.

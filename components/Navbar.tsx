@@ -12,11 +12,11 @@ const links = [
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-border bg-card/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-4xl items-center justify-between px-6">
         <Link
           href="/"
-          className="text-lg font-extrabold tracking-tight text-[var(--secondary)]"
+          className="text-lg font-extrabold tracking-tight text-secondary"
         >
           🐾 Enzo&apos;s World
         </Link>

@@ -19,7 +19,7 @@ export default function RootLayout({
         <Navbar />
 
         <main className="mx-auto max-w-4xl px-6 py-10">
-          <div className="rounded-3xl bg-card p-8 shadow-[var(--shadow)]">
+          <div className="rounded-3xl bg-card p-8 shadow-(--shadow)">
             {children}
           </div>
         </main>

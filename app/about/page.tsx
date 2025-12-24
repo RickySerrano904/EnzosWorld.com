@@ -7,7 +7,7 @@ export default function AboutPage() {
     <main className="space-y-6">
       <header className="space-y-2">
         <h1 className="text-4xl font-extrabold tracking-tight">
-          About <span className="text-[var(--secondary)]">📃</span>
+          About <span className="text-secondary">📃</span>
         </h1>
         <p className="text-foreground/70">
           This is a website dedicated to Enzo — a professional snack enthusiast, 
@@ -33,7 +33,7 @@ export default function AboutPage() {
         />
       </section>
 
-      <section className="rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow)]">
+      <section className="rounded-3xl border border-border bg-card p-8 shadow-(--shadow)">
         <h2 className="text-2xl font-bold">Enzo&apos;s Certified Stats</h2>
         <p className="mt-2 text-foreground/70">
           Verified by the board.
@@ -47,7 +47,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="rounded-3xl border border-border bg-[var(--accent)]/18 p-8">
+      <section className="rounded-3xl border border-border bg-(--accent)/18 p-8">
         <h2 className="text-2xl font-bold">Want to contribute?</h2>
         <p className="mt-2 max-w-2xl text-foreground/75">
           If you want to brighten Enzo’s day with a toy, treat, or snack, here are some ways to do it:
@@ -56,7 +56,7 @@ export default function AboutPage() {
       <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <a
             href="https://www.amazon.com/hz/wishlist/your-wishlist-id"
-            className="inline-flex items-center justify-center rounded-full bg-[var(--secondary)] px-6 py-3 text-sm font-semibold text-white transition hover:brightness-95"
+            className="inline-flex items-center justify-center rounded-full bg-secondary px-6 py-3 text-sm font-semibold text-white transition hover:brightness-95"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -65,7 +65,7 @@ export default function AboutPage() {
 
           <a
             href="https://www.chewy.com/gift-registry/your-registry-id"
-            className="inline-flex items-center justify-center rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold transition hover:bg-[var(--primary)]/20"
+            className="inline-flex items-center justify-center rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold transition hover:bg-(--primary)/20"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -87,7 +87,7 @@ function InfoCard({
   text: string;
 }) {
   return (
-    <div className="rounded-3xl border border-border bg-card p-6 shadow-[var(--shadow)]">
+    <div className="rounded-3xl border border-border bg-card p-6 shadow-(--shadow)">
       <div className="text-3xl">{emoji}</div>
       <h3 className="mt-3 text-lg font-bold">{title}</h3>
       <p className="mt-2 text-sm text-foreground/75">{text}</p>

@@ -3,19 +3,20 @@
 /* Enzo's World theme tokens */
 :root {
   /* Core surfaces */
-  --bg: #fff1dc;          /* warm cream */
-  --card: #ffffff;        /* clean card */
-  --text: #3b2f2f;        /* soft brown text */
+  --bg: #fff2dc;          /* warm cream */
+  --card: #ffffff;        /* clean card (still fine) */
+  --text: #241a14;        /* warm dark brown */
 
   /* Brand colors */
-  --primary: #f4c26b;     /* golden */
-  --secondary: #f7a072;   /* peach */
-  --accent: #8fb9a8;      /* sage */
+  --primary: #f1c66a;     /* golden (slightly calmer) */
+  --secondary: #d9822b;   /* warm orange (less peachy) */
+  --accent: #5e8f7a;      /* deeper sage (less pastel) */
 
   /* Optional UI helpers */
-  --border: rgba(59, 47, 47, 0.12);
-  --shadow: 0 8px 24px rgba(59, 47, 47, 0.10);
+  --border: rgba(31, 26, 20, 0.12);
+  --shadow: 0 10px 28px rgba(31, 26, 20, 0.10);
 }
+
 
 /* Tailwind v4 theme mapping (so classes like bg-background work) */
 @theme inline {
@@ -41,10 +42,11 @@ body {
   color: var(--text);
   font-family: var(--font-sans);
   background-image:
-    radial-gradient(circle at 20% 20%, rgba(244, 194, 107, 0.18), transparent 40%),
-    radial-gradient(circle at 80% 30%, rgba(247, 160, 114, 0.16), transparent 45%),
-    radial-gradient(circle at 30% 80%, rgba(143, 185, 168, 0.16), transparent 45%);
+    radial-gradient(circle at 20% 20%, rgba(241, 198, 106, 0.14), transparent 42%),
+    radial-gradient(circle at 80% 30%, rgba(217, 130, 43, 0.10), transparent 48%),
+    radial-gradient(circle at 30% 80%, rgba(94, 143, 122, 0.10), transparent 48%);
 }
+
 
 
 /* Nice default selection highlight */

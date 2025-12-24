@@ -39,7 +39,7 @@ export default function HomePage() {
               <div className="absolute bottom-0 w-full bg-background/80 p-3 sm:p-4 backdrop-blur">
                 <p className="text-sm font-semibold">Enzo</p>
                 <p className="text-xs text-foreground/70">
-                  CEO of Snacks · Head of Naps
+                  CEO of Snacks
                 </p>
               </div>
             </div>

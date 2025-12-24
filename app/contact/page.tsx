@@ -86,7 +86,7 @@ export default function ContactPage() {
 
       <section className="grid gap-6 md:grid-cols-3">
         {/* Sidebar: first on mobile, sticky on desktop */}
-        <aside className="order-first md:order-0 self-start rounded-3xl border border-border bg-card p-5 sm:p-6 lg:p-8 shadow-(--shadow) space-y-6 md:sticky md:top-6">
+        <aside className="order-first md:order-0 self-start rounded-3xl border border-border bg-card p-5 sm:p-6 lg:p-8 shadow-none sm:shadow-(--shadow) space-y-6 md:sticky md:top-6">
           <div className="space-y-2">
             <h3 className="text-lg font-bold">Enzo&apos;s Office Hours</h3>
             <p className="text-sm text-foreground/70">
@@ -120,7 +120,7 @@ export default function ContactPage() {
         </aside>
 
         {/* Form: tighter padding on mobile, unchanged on desktop */}
-        <div className="md:col-span-2 rounded-3xl border border-border bg-card p-5 sm:p-6 lg:p-8 shadow-(--shadow)">
+        <div className="md:col-span-2 rounded-3xl border border-border bg-card p-5 sm:p-6 lg:p-8 shadow-none sm:shadow-(--shadow)">
           <h2 className="text-xl sm:text-2xl font-bold">Send a message</h2>
           <p className="mt-2 text-sm text-foreground/70">Required fields: name, email, message.</p>
 

@@ -19,7 +19,7 @@ export default function BlogPage() {
     <main className="space-y-6">
       <header className="space-y-2">
         <h1 className="text-4xl font-extrabold tracking-tight">
-          Blog <span className="text-[var(--secondary)]">📖</span>
+          Blog <span className="text-secondary">📖</span>
         </h1>
         <p className="text-foreground/70">
           Field reports from Enzo: snacks, puddles, and local feline conflicts.
@@ -31,7 +31,7 @@ export default function BlogPage() {
           <li key={p.slug}>
             <Link
               href={`/blog/${p.slug}`}
-              className="group block rounded-3xl border border-border bg-card p-5 shadow-[var(--shadow)] transition hover:-translate-y-0.5 hover:shadow-lg"
+              className="group block rounded-3xl border border-border bg-card p-5 shadow-(--shadow) transition hover:-translate-y-0.5 hover:shadow-lg"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="space-y-1">
@@ -41,7 +41,7 @@ export default function BlogPage() {
                   <p className="text-sm text-foreground/60">{p.date}</p>
                 </div>
 
-                <span className="rounded-full bg-[var(--primary)]/25 px-3 py-1 text-xs font-medium text-foreground/80">
+                <span className="rounded-full bg-(--primary)/25 px-3 py-1 text-xs font-medium text-foreground/80">
                   read →
                 </span>
               </div>

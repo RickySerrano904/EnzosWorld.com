@@ -1,5 +1,5 @@
 // app/layout.tsx
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -7,6 +7,9 @@ import Navbar from "@/components/Navbar";
 export const metadata: Metadata = {
   title: "Enzo's World",
   description: "A joke website dedicated to Enzo the golden retriever",
+};
+
+export const viewport: Viewport = {
   colorScheme: "light",
 };
 
@@ -25,6 +28,7 @@ export default function RootLayout({
             {children}
           </div>
         </main>
+
         <Analytics />
       </body>
     </html>

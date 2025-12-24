@@ -73,6 +73,10 @@ export default function MerchPage() {
   const [modalItem, setModalItem] = useState<MerchItem | null>(null);
   const [quantities, setQuantities] = useState<Record<string, number>>({});
 
+  // ✅ animation state
+  const [justAdded, setJustAdded] = useState<Record<string, boolean>>({});
+  const [cartPulse, setCartPulse] = useState(false);
+
   // Load localStorage after mount (avoids SSR/hydration issues)
   useEffect(() => {
     setCart(safeJsonParse<CartItem[]>(localStorage.getItem("cart"), []));
@@ -103,6 +107,7 @@ export default function MerchPage() {
 
   const addToCart = (item: MerchItem) => {
     const qty = Math.max(1, quantities[item.name] || 1);
+
     setCart((prev) => {
       const existing = prev.find((x) => x.name === item.name);
       if (existing) {
@@ -110,7 +115,19 @@ export default function MerchPage() {
       }
       return [...prev, { ...item, qty }];
     });
+
+    // reset qty input
     setQuantities((prev) => ({ ...prev, [item.name]: 1 }));
+
+    // ✅ button "Added" feedback
+    setJustAdded((prev) => ({ ...prev, [item.name]: true }));
+    window.setTimeout(() => {
+      setJustAdded((prev) => ({ ...prev, [item.name]: false }));
+    }, 900);
+
+    // ✅ cart pulse highlight
+    setCartPulse(true);
+    window.setTimeout(() => setCartPulse(false), 450);
   };
 
   const updateCartQty = (itemName: string, newQty: number) => {
@@ -136,7 +153,7 @@ export default function MerchPage() {
     <main className="space-y-8">
       <header className="space-y-2">
         <h1 className="text-4xl font-extrabold tracking-tight">
-          Merch <span className="text-[var(--secondary)]">🛍️</span>
+          Merch <span className="text-secondary">🛍️</span>
         </h1>
         <p className="text-foreground/70">
           Not a real store. Just vibes. (Enzo accepts payment in head pats.)
@@ -149,7 +166,7 @@ export default function MerchPage() {
           placeholder="Search merch..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full rounded-full border border-border bg-background px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--primary)]/40 sm:max-w-sm"
+          className="w-full rounded-full border border-border bg-background px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-(--primary)/40 sm:max-w-sm"
         />
 
         <div className="text-sm text-foreground/70">
@@ -161,11 +178,12 @@ export default function MerchPage() {
       <section className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {filteredItems.map((item) => {
           const qty = quantities[item.name] || 1;
+          const added = !!justAdded[item.name];
 
           return (
             <div
               key={item.name}
-              className="flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow)]"
+              className="flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-(--shadow)"
             >
               <button
                 type="button"
@@ -207,9 +225,13 @@ export default function MerchPage() {
                   <button
                     type="button"
                     onClick={() => addToCart(item)}
-                    className="rounded-full bg-[var(--secondary)] px-4 py-2 text-sm font-semibold text-white transition hover:brightness-95 active:scale-[0.99]"
+                    className={[
+                      "rounded-full px-4 py-2 text-sm font-semibold text-white transition",
+                      "active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-(--primary)/35",
+                      added ? "bg-emerald-600 scale-[1.03]" : "bg-secondary hover:brightness-95",
+                    ].join(" ")}
                   >
-                    Add
+                    {added ? "Added ✓" : "Add"}
                   </button>
                 </div>
               </div>
@@ -219,14 +241,17 @@ export default function MerchPage() {
       </section>
 
       {/* Cart */}
-      <section className="rounded-3xl border border-border bg-card p-6 shadow-[var(--shadow)]">
+      <section
+        className={[
+          "rounded-3xl border border-border bg-card p-6 shadow-(--shadow) transition",
+          cartPulse ? "ring-2 ring-(--primary)/35 scale-[1.01]" : "",
+        ].join(" ")}
+      >
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <h2 className="text-2xl font-bold">Cart</h2>
 
           <div className="flex items-center gap-3">
-            <span className="text-sm text-foreground/70">
-              {cart.length} item type(s)
-            </span>
+            <span className="text-sm text-foreground/70">{cart.length} item type(s)</span>
 
             {cart.length > 0 && (
               <button
@@ -261,7 +286,9 @@ export default function MerchPage() {
                     type="number"
                     min={0}
                     value={item.qty}
-                    onChange={(e) => updateCartQty(item.name, parseInt(e.target.value || "0", 10))}
+                    onChange={(e) =>
+                      updateCartQty(item.name, parseInt(e.target.value || "0", 10))
+                    }
                     className="w-20 rounded-full border border-border bg-background px-3 py-2 text-sm"
                   />
 
@@ -290,7 +317,7 @@ export default function MerchPage() {
               <button
                 type="button"
                 onClick={fakeCheckout}
-                className="rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-[var(--text)] transition hover:brightness-95 active:scale-[0.99]"
+                className="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-foreground transition hover:brightness-95 active:scale-[0.99]"
               >
                 Checkout (fake)
               </button>
@@ -302,11 +329,11 @@ export default function MerchPage() {
       {/* Modal */}
       {modalItem && (
         <div
-          className="fixed inset-0 z-[999] flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-999 flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm"
           onClick={() => setModalItem(null)}
         >
           <div
-            className="w-full max-w-lg overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow)]"
+            className="w-full max-w-lg overflow-hidden rounded-3xl border border-border bg-card shadow-(--shadow)"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative aspect-square">
@@ -338,7 +365,7 @@ export default function MerchPage() {
 
               <div className="flex items-center justify-between">
                 <p className="text-lg font-extrabold">{modalItem.price}</p>
-                <span className="rounded-full bg-[var(--primary)]/25 px-3 py-1 text-xs font-medium">
+                <span className="rounded-full bg-(--primary)/25 px-3 py-1 text-xs font-medium">
                   totally real pricing
                 </span>
               </div>

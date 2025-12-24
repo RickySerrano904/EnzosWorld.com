@@ -67,7 +67,7 @@ export default function ContactPage() {
   return (
     <main className="space-y-6">
       <header className="space-y-2">
-        <h1 className="text-4xl font-extrabold tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
           Contact Enzo&apos;s Team <span className="text-secondary">📃</span>
         </h1>
         <p className="text-foreground/70">
@@ -76,7 +76,7 @@ export default function ContactPage() {
       </header>
 
       {submitted && (
-        <section className="rounded-3xl border border-border bg-(--accent)/18 p-6">
+        <section className="rounded-3xl border border-border bg-(--accent)/18 p-5 sm:p-6">
           <p className="text-sm font-semibold">✅ Message received!</p>
           <p className="mt-1 text-sm text-foreground/75">
             Enzo&apos;s assistant will respond in 2–3 business belly rubs.
@@ -85,8 +85,43 @@ export default function ContactPage() {
       )}
 
       <section className="grid gap-6 md:grid-cols-3">
-        <div className="md:col-span-2 rounded-3xl border border-border bg-card p-8 shadow-(--shadow)">
-          <h2 className="text-2xl font-bold">Send a message</h2>
+        {/* Sidebar: first on mobile, sticky on desktop */}
+        <aside className="order-first md:order-0 self-start rounded-3xl border border-border bg-card p-5 sm:p-6 lg:p-8 shadow-(--shadow) space-y-6 md:sticky md:top-6">
+          <div className="space-y-2">
+            <h3 className="text-lg font-bold">Enzo&apos;s Office Hours</h3>
+            <p className="text-sm text-foreground/70">
+              Mon–Fri: 9am–5pm (nap adjusted) <br />
+              Sat–Sun: “Out of office” (fetch)
+            </p>
+          </div>
+
+          {/* Mobile-only divider for better scanability */}
+          <div className="h-px bg-border md:hidden" />
+
+          <div className="rounded-3xl border border-border bg-background p-4 sm:p-5">
+            <h4 className="text-sm font-bold">Submission checklist</h4>
+            <ul className="mt-3 space-y-2 text-sm text-foreground/75">
+              <li>✅ Photo of Enzo (preferably doing something ridiculous)</li>
+              <li>✅ Short caption</li>
+              <li>✅ Year (for sorting)</li>
+              <li>✅ Optional: snack rating</li>
+            </ul>
+          </div>
+
+          {/* Mobile-only divider for better scanability */}
+          <div className="h-px bg-border md:hidden" />
+
+          <div className="rounded-3xl border border-border bg-(--accent)/18 p-4 sm:p-5">
+            <p className="text-sm font-semibold">Emergency?</p>
+            <p className="mt-2 text-sm text-foreground/75">
+              If Enzo is out of treats, please remain calm and proceed directly to the kitchen.
+            </p>
+          </div>
+        </aside>
+
+        {/* Form: tighter padding on mobile, unchanged on desktop */}
+        <div className="md:col-span-2 rounded-3xl border border-border bg-card p-5 sm:p-6 lg:p-8 shadow-(--shadow)">
+          <h2 className="text-xl sm:text-2xl font-bold">Send a message</h2>
           <p className="mt-2 text-sm text-foreground/70">Required fields: name, email, message.</p>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-5">
@@ -106,7 +141,7 @@ export default function ContactPage() {
                 <input
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="sophie"
+                  placeholder="Sophie"
                   required
                   minLength={2}
                   maxLength={80}
@@ -174,7 +209,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={!canSubmit}
-                className="inline-flex items-center justify-center rounded-full bg-secondary px-6 py-3 text-sm font-semibold text-white transition hover:brightness-95 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center justify-center rounded-full bg-secondary px-6 py-3 text-sm font-semibold text-white transition hover:brightness-95 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {sending ? "Sending..." : "Send message"}
               </button>
@@ -185,34 +220,6 @@ export default function ContactPage() {
             </div>
           </form>
         </div>
-
-        {/* Sidebar (unchanged) */}
-        <aside className="rounded-3xl border border-border bg-card p-8 shadow-(--shadow) space-y-6">
-          <div>
-            <h3 className="text-lg font-bold">Enzo&apos;s Office Hours</h3>
-            <p className="mt-2 text-sm text-foreground/70">
-              Mon–Fri: 9am–5pm (nap adjusted) <br />
-              Sat–Sun: “Out of office” (fetch)
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-border bg-background p-5">
-            <h4 className="text-sm font-bold">Submission checklist</h4>
-            <ul className="mt-3 space-y-2 text-sm text-foreground/75">
-              <li>✅ Photo of Enzo (preferably doing something ridiculous)</li>
-              <li>✅ Short caption</li>
-              <li>✅ Year (for sorting)</li>
-              <li>✅ Optional: snack rating</li>
-            </ul>
-          </div>
-
-          <div className="rounded-3xl border border-border bg-(--accent)/18 p-5">
-            <p className="text-sm font-semibold">Emergency?</p>
-            <p className="mt-2 text-sm text-foreground/75">
-              If Enzo is out of treats, please remain calm and proceed directly to the kitchen.
-            </p>
-          </div>
-        </aside>
       </section>
     </main>
   );

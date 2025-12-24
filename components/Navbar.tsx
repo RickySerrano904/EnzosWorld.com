@@ -38,7 +38,7 @@ export default function Navbar() {
         <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link
             href="/"
-            className="text-lg font-extrabold tracking-tight text-[var(--secondary)]"
+            className="text-lg font-extrabold tracking-tight text-secondary"
           >
             🐾 Enzo&apos;s World
           </Link>
@@ -87,7 +87,7 @@ export default function Navbar() {
             />
 
             {/* Dropdown panel */}
-            <div className="absolute left-0 right-0 top-full z-50 md:hidden border-b border-border bg-card shadow-[var(--shadow)]">
+            <div className="absolute left-0 right-0 top-full z-50 md:hidden border-b border-border bg-card shadow-(--shadow)">
               <nav className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-3">
                 <div className="grid gap-2">
                   {links.map((l) => {

@@ -2,6 +2,7 @@
 
 html, body {
   background: var(--bg);
+  color-scheme: light;
 }
 
 /* Enzo's World theme tokens */

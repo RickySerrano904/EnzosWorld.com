@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 export const metadata: Metadata = {
   title: "Enzo's World",
   description: "A joke website dedicated to Enzo the golden retriever",
+  colorScheme: "light",
 };
 
 export default function RootLayout({

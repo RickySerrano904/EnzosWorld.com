@@ -2,8 +2,8 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import ThemeProvider from "@/components/ThemeProvider";
+import Navbar from "@/app/components/Navbar";
+import ThemeProvider from "@/app/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Enzo's World",

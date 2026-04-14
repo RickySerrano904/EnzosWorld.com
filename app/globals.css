@@ -5,8 +5,11 @@ html, body {
   color-scheme: light;
 }
 
-/* Enzo's World theme tokens */
-:root {
+/* Enzo's World theme tokens - Light Mode */
+:root,
+html.light {
+  color-scheme: light;
+
   /* Core surfaces */
   --bg: #fff2dc;          /* warm cream */
   --card: #ffffff;        /* clean card (still fine) */
@@ -20,6 +23,25 @@ html, body {
   /* Optional UI helpers */
   --border: rgba(31, 26, 20, 0.12);
   --shadow: 0 10px 28px rgba(31, 26, 20, 0.10);
+}
+
+/* Dark Mode */
+html.dark {
+  color-scheme: dark;
+
+  /* Core surfaces */
+  --bg: #1a1410;          /* dark brown */
+  --card: #2a1f18;        /* slightly lighter dark brown */
+  --text: #f5e6d3;        /* warm light cream */
+
+  /* Brand colors (adjusted for dark) */
+  --primary: #d4a945;     /* muted golden */
+  --secondary: #e89a4a;   /* warm orange */
+  --accent: #6fa08b;      /* soft sage */
+
+  /* Optional UI helpers */
+  --border: rgba(245, 230, 211, 0.12);
+  --shadow: 0 10px 28px rgba(0, 0, 0, 0.40);
 }
 
 

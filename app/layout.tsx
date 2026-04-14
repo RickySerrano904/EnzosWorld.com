@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import ThemeProvider from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Enzo's World",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  colorScheme: "light",
+  colorScheme: "light dark",
 };
 
 export default function RootLayout({
@@ -19,17 +20,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="light">
+    <html lang="en">
       <body className="min-h-screen bg-background text-foreground">
-        <Navbar />
+        <ThemeProvider>
+          <Navbar />
 
-        <main className="mx-auto max-w-4xl px-6 py-10">
-          <div className="rounded-3xl bg-card p-8 shadow-(--shadow)">
-            {children}
-          </div>
-        </main>
+          <main className="mx-auto max-w-4xl px-6 py-10">
+            <div className="rounded-3xl bg-card p-8 shadow-(--shadow)">
+              {children}
+            </div>
+          </main>
 
-        <Analytics />
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );

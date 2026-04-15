@@ -2,18 +2,31 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { posts } from "./posts";
 
-export default function PostNav() {
-  const pathname = usePathname(); // e.g. "/blog/archaeologist-enzo"
-  const parts = pathname.split("/").filter(Boolean);
+import type { BlogPostMeta } from "./types";
 
-  // Only show on "/blog/<something>" (not on "/blog")
-  if (parts[0] !== "blog" || parts.length !== 2) return null;
+type BlogPostNavProps = {
+  basePath: `/${string}`;
+  posts: BlogPostMeta[];
+};
 
-  const slug = parts[1];
+function getPostSlug(pathname: string, basePath: string) {
+  const routeSegments = pathname.split("/").filter(Boolean);
+  const baseSegments = basePath.split("/").filter(Boolean);
 
-  const currentIndex = posts.findIndex((p) => p.slug === slug);
+  const isPostRoute =
+    routeSegments.length === baseSegments.length + 1 &&
+    baseSegments.every((segment, index) => routeSegments[index] === segment);
+
+  return isPostRoute ? routeSegments[routeSegments.length - 1] : null;
+}
+
+export function BlogPostNav({ basePath, posts }: BlogPostNavProps) {
+  const pathname = usePathname();
+  const slug = getPostSlug(pathname, basePath);
+  if (!slug) return null;
+
+  const currentIndex = posts.findIndex((post) => post.slug === slug);
   if (currentIndex === -1) return null;
 
   const prevPost = currentIndex > 0 ? posts[currentIndex - 1] : null;
@@ -21,10 +34,9 @@ export default function PostNav() {
 
   return (
     <nav className="grid min-w-0 gap-3 pt-10 sm:grid-cols-2">
-      {/* Previous */}
       {prevPost ? (
         <Link
-          href={`/blog/${prevPost.slug}`}
+          href={`${basePath}/${prevPost.slug}`}
           className="group min-w-0 overflow-hidden rounded-3xl border border-border bg-card p-5 shadow-(--shadow) transition hover:-translate-y-0.5 hover:shadow-lg"
         >
           <div className="flex min-w-0 items-center gap-3">
@@ -32,7 +44,7 @@ export default function PostNav() {
               className="shrink-0 text-xl transition-transform duration-300 group-hover:-translate-x-1 group-hover:-rotate-6 group-hover:scale-110"
               aria-hidden="true"
             >
-              ←
+              &larr;
             </span>
 
             <div className="min-w-0 flex-1">
@@ -43,7 +55,6 @@ export default function PostNav() {
             </div>
           </div>
 
-          {/* Previous swoosh */}
           <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-primary/15">
             <div className="h-full w-1/3 translate-x-[301%] rounded-full bg-primary/60 transition-transform duration-500 group-hover:-translate-x-[20%]" />
           </div>
@@ -52,10 +63,9 @@ export default function PostNav() {
         <div className="hidden sm:block" />
       )}
 
-      {/* Next */}
       {nextPost ? (
         <Link
-          href={`/blog/${nextPost.slug}`}
+          href={`${basePath}/${nextPost.slug}`}
           className="group min-w-0 overflow-hidden rounded-3xl border border-border bg-card p-5 text-right shadow-(--shadow) transition hover:-translate-y-0.5 hover:shadow-lg"
         >
           <div className="flex min-w-0 items-center justify-end gap-3">
@@ -70,7 +80,7 @@ export default function PostNav() {
               className="shrink-0 text-xl transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-6 group-hover:scale-110"
               aria-hidden="true"
             >
-              →
+              &rarr;
             </span>
           </div>
 

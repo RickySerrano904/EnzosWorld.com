@@ -1,8 +1,4 @@
-export type BlogPostMeta = {
-  slug: string;
-  title: string;
-  date: string;
-};
+import type { BlogConfig, BlogPostMeta } from "@/app/components/blog/types";
 
 export const posts: BlogPostMeta[] = [
   { slug: "the-feline-menace", title: "The Feline Menace", date: "May 06, 2024" },
@@ -15,3 +11,13 @@ export const posts: BlogPostMeta[] = [
   { slug: "bark-sip-repeat", title: "Bark, Sip, Repeat", date: "May 19, 2025" },
   { slug: "business-in-the-front-puddles-in-the-back", title: "Business in the Front, Puddles in the Back", date: "June 12, 2025" },
 ];
+
+export const blogConfig: BlogConfig = {
+  basePath: "/blog",
+  title: "Blog",
+  titleIcon: "\u{1F4D6}",
+  description:
+    "Field reports from Enzo: snacks, puddles, and local feline conflicts.",
+  readLabel: "read ->",
+  posts,
+};

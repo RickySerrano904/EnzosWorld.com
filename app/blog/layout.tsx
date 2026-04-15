@@ -1,4 +1,6 @@
-import PostNav from "./PostNav";
+import { BlogPostNav } from "@/app/components/blog/BlogPostNav";
+
+import { blogConfig } from "./posts";
 
 export default function BlogLayout({
   children,
@@ -8,7 +10,7 @@ export default function BlogLayout({
   return (
     <article className="space-y-10">
       {children}
-      <PostNav />
+      <BlogPostNav basePath={blogConfig.basePath} posts={blogConfig.posts} />
     </article>
   );
 }

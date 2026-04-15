@@ -2,6 +2,8 @@ export type BlogPostMeta = {
   slug: string;
   title: string;
   date: string;
+  thumbnailSrc: string;
+  thumbnailAlt?: string;
 };
 
 export type BlogConfig = {

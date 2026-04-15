@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import { Turnstile } from "@marsidev/react-turnstile";
-
 import BackHomeButton from "@/app/components/BackHomeButton";
 
 type Topic =

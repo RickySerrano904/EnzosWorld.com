@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-
 import BackHomeButton from "@/app/components/BackHomeButton";
 
 type MerchItem = {

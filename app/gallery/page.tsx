@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
+import BackHomeButton from "@/app/components/BackHomeButton";
+
 const imageData: Record<string, string[]> = {
   2024: [
     "20240401_194099.jpg",
@@ -220,6 +222,8 @@ export default function GalleryPage() {
 
   return (
     <main className="space-y-8">
+      <BackHomeButton />
+
       <header className="space-y-2">
         <h1 className="text-4xl font-extrabold tracking-tight">
           Gallery <span className="text-[var(--secondary)]">📸</span>

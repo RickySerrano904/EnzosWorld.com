@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import { Turnstile } from "@marsidev/react-turnstile";
 
+import BackHomeButton from "@/app/components/BackHomeButton";
+
 type Topic =
   | "Gallery submission"
   | "Blog idea"
@@ -68,6 +70,8 @@ export default function ContactPage() {
 
   return (
     <main className="space-y-6">
+      <BackHomeButton />
+
       <header className="space-y-2">
         <h1 className="text-4xl font-extrabold tracking-tight">
           Contact Enzo&apos;s Team <span className="text-secondary">📞</span>

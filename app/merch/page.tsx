@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
+import BackHomeButton from "@/app/components/BackHomeButton";
+
 type MerchItem = {
   name: string;
   description: string;
@@ -151,6 +153,8 @@ export default function MerchPage() {
 
   return (
     <main className="space-y-8">
+      <BackHomeButton />
+
       <header className="space-y-2">
         <h1 className="text-4xl font-extrabold tracking-tight">
           Merch <span className="text-secondary">🛍️</span>

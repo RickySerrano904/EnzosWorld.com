@@ -1,10 +1,12 @@
 // app/about/page.tsx
-import Link from "next/link";
+import BackHomeButton from "@/app/components/BackHomeButton";
 
 export default function AboutPage() {
   return (
 
     <main className="space-y-6">
+      <BackHomeButton />
+
       <header className="space-y-2">
         <h1 className="text-4xl font-extrabold tracking-tight">
           About <span className="text-secondary">📃</span>

@@ -27,12 +27,17 @@ export function BlogPostBackLink({
   if (!isPostRoute(pathname, basePath)) return null;
 
   return (
-    <div>
+    <div className="relative -mt-4 mb-2 px-1">
       <Link
         href={basePath}
-        className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground/85 shadow-(--shadow) transition hover:-translate-y-0.5 hover:text-foreground hover:shadow-lg"
+        className="group inline-flex items-center gap-1.5 text-xs font-semibold tracking-wide text-foreground/60 uppercase transition-colors duration-300 hover:text-secondary"
       >
-        <span aria-hidden="true">&larr;</span>
+        <span
+          aria-hidden="true"
+          className="transition-transform duration-300 group-hover:-translate-x-0.5"
+        >
+          &larr;
+        </span>
         <span>{label}</span>
       </Link>
     </div>

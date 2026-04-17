@@ -1,4 +1,4 @@
-// app/page.tsx
+﻿// app/page.tsx
 import Link from "next/link";
 import Image from "next/image";
 
@@ -16,7 +16,7 @@ export default function HomePage() {
 
             <p className="max-w-xl text-base sm:text-lg text-foreground/80">
               The official website dedicated to everyone&apos;s favorite golden retriever,
-              Enzo — toy enthusiast, professional snack eater, and lover of playtime.
+              Enzo - toy enthusiast, professional snack eater, and lover of playtime.
             </p>
           </div>
 
@@ -77,11 +77,11 @@ export default function HomePage() {
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           <Quote
             who="The Couch"
-            text="I haven’t had peace since he arrived. 10/10 would be sat on again."
+            text="I haven't had peace since he arrived. 10/10 would be sat on again."
           />
           <Quote
             who="A Tennis Ball"
-            text="He said 'one last throw' and I haven’t seen daylight in weeks."
+            text="He said 'one last throw' and I haven't seen daylight in weeks."
           />
           <Quote
             who="The Leash"
@@ -105,7 +105,7 @@ export default function HomePage() {
             href="/gallery"
             className="inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-foreground transition hover:brightness-95 active:scale-[0.99] md:w-auto"
           >
-            🐶 Begin the Tour
+            Begin the Tour
           </Link>
         </div>
       </section>
@@ -141,8 +141,14 @@ function FeatureCard({
       <h3 className="mt-4 text-lg font-bold">{title}</h3>
       <p className="mt-2 text-sm text-foreground/75">{text}</p>
 
-      <p className="mt-4 text-sm font-semibold text-secondary">
-        Explore → <span className="opacity-0 transition group-hover:opacity-100">🐾</span>
+      <p className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-(--primary)/22 px-3 py-1 text-sm font-semibold text-foreground/90 shadow-none transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-secondary/45 group-hover:bg-(--primary)/30 group-hover:text-secondary group-hover:shadow-[0_0_0_1px_rgba(217,130,43,0.25),0_8px_18px_rgba(241,198,106,0.22),0_0_22px_rgba(217,130,43,0.32)]">
+        <span>Explore</span>
+        <span
+          aria-hidden="true"
+          className="transition-transform duration-300 group-hover:translate-x-0.5"
+        >
+          &rarr;
+        </span>
       </p>
     </Link>
   );
@@ -151,8 +157,9 @@ function FeatureCard({
 function Quote({ who, text }: { who: string; text: string }) {
   return (
     <div className="rounded-3xl border border-border bg-background p-5">
-      <p className="text-sm text-foreground/80">“{text}”</p>
-      <p className="mt-3 text-sm font-semibold">— {who}</p>
+      <p className="text-sm text-foreground/80">&ldquo;{text}&rdquo;</p>
+      <p className="mt-3 text-sm font-semibold">&mdash; {who}</p>
     </div>
   );
 }
+

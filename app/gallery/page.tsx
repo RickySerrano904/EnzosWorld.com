@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import BackHomeButton from "@/app/components/BackHomeButton";
 
@@ -115,7 +116,7 @@ function Thumb({
     <button
       type="button"
       onClick={onClick}
-      className="group relative aspect-square w-full overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow)] transition hover:-translate-y-0.5 hover:shadow-lg"
+      className="group relative aspect-square w-full overflow-hidden rounded-2xl border border-border bg-background transition-all duration-300 hover:-translate-y-0.5 hover:border-secondary/40 hover:shadow-[0_8px_18px_rgba(31,26,20,0.12)]"
       title="View photo"
     >
       {!loaded && (
@@ -237,11 +238,14 @@ export default function GalleryPage() {
         const isCollapsed = collapsedYears[year];
 
         return (
-          <section key={year} className="space-y-4">
+          <section
+            key={year}
+            className="overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow)]"
+          >
             <button
               type="button"
               onClick={() => toggleYear(year)}
-              className="flex w-full items-center justify-between rounded-3xl border border-border bg-card px-5 py-4 text-left shadow-[var(--shadow)]"
+              className="group flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-[var(--primary)]/10"
               aria-expanded={!isCollapsed}
             >
               <div className="flex items-center gap-3">
@@ -251,13 +255,13 @@ export default function GalleryPage() {
                 </span>
               </div>
 
-              <span className="text-sm font-semibold text-foreground/70">
+              <span className="text-sm font-semibold text-foreground/70 transition duration-300 group-hover:text-secondary group-hover:[text-shadow:0_0_10px_rgba(217,130,43,0.45),0_0_18px_rgba(241,198,106,0.36)]">
                 {isCollapsed ? "Show" : "Hide"}
               </span>
             </button>
 
             {!isCollapsed && (
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 border-t border-border bg-background/35 p-5 sm:grid-cols-2 md:grid-cols-3">
                 {files.map((filename, index) => {
                   const src = imgPath(year, filename);
                   return (
@@ -287,35 +291,49 @@ export default function GalleryPage() {
           >
             <button
               type="button"
-              className="absolute right-3 top-3 z-10 rounded-full border border-border bg-background/80 px-3 py-2 text-sm backdrop-blur"
+              className="group absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-primary/35 bg-background/85 text-foreground/85 shadow-[0_8px_18px_rgba(0,0,0,0.16)] backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-secondary/55 hover:bg-primary hover:text-secondary hover:shadow-[0_0_0_1px_rgba(217,130,43,0.24),0_10px_24px_rgba(0,0,0,0.22),0_0_22px_rgba(241,198,106,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/55 active:scale-95"
               onClick={() => setSelectedImage(null)}
               aria-label="Close image modal"
             >
-              ✕
+              <X
+                aria-hidden="true"
+                className="h-[18px] w-[18px] transition-transform duration-300 group-hover:rotate-90"
+                strokeWidth={2.5}
+              />
             </button>
 
             <button
               type="button"
-              className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-border bg-background/80 px-3 py-2 text-2xl backdrop-blur"
+              className="group absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-primary/35 bg-background/85 text-2xl font-bold text-foreground/85 shadow-[0_8px_18px_rgba(0,0,0,0.18)] backdrop-blur transition-all duration-300 hover:-translate-x-0.5 hover:border-secondary/55 hover:bg-primary hover:text-secondary hover:shadow-[0_0_0_1px_rgba(217,130,43,0.24),0_10px_24px_rgba(0,0,0,0.22),0_0_22px_rgba(241,198,106,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/55 active:scale-95"
               onClick={(e) => {
                 e.stopPropagation();
                 navigateImage(-1);
               }}
               aria-label="Previous image"
             >
-              ←
+              <span
+                aria-hidden="true"
+                className="flex items-center justify-center transition-transform duration-300 group-hover:-translate-x-0.5"
+              >
+                <ChevronLeft className="h-6 w-6" strokeWidth={2.6} />
+              </span>
             </button>
 
             <button
               type="button"
-              className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-border bg-background/80 px-3 py-2 text-2xl backdrop-blur"
+              className="group absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-primary/35 bg-background/85 text-2xl font-bold text-foreground/85 shadow-[0_8px_18px_rgba(0,0,0,0.18)] backdrop-blur transition-all duration-300 hover:translate-x-0.5 hover:border-secondary/55 hover:bg-primary hover:text-secondary hover:shadow-[0_0_0_1px_rgba(217,130,43,0.24),0_10px_24px_rgba(0,0,0,0.22),0_0_22px_rgba(241,198,106,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/55 active:scale-95"
               onClick={(e) => {
                 e.stopPropagation();
                 navigateImage(1);
               }}
               aria-label="Next image"
             >
-              →
+              <span
+                aria-hidden="true"
+                className="flex items-center justify-center transition-transform duration-300 group-hover:translate-x-0.5"
+              >
+                <ChevronRight className="h-6 w-6" strokeWidth={2.6} />
+              </span>
             </button>
 
             <div className="relative h-[80vh] w-full bg-black">

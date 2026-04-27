@@ -45,25 +45,25 @@ export default function HomePage() {
       {/* Feature cards */}
       <section className="grid gap-6 md:grid-cols-3">
         <FeatureCard
-          emoji="📸"
-          title="Gallery"
-          text="Evidence that Enzo is, objectively, the most photogenic creature alive."
+          // emoji="📸"
+          title="Gallery 📸"
+          text="A collection of photos showcasing Enzo's adventures and mischievous moments."
           href="/gallery"
-          pill="soft chaos"
+          // pill="soft chaos"
         />
         <FeatureCard
-          emoji="🛍️"
-          title="Merch"
-          text='Absolutely necessary items like "Enzo Approved" everything.'
+          // emoji="🛍️"
+          title="Merch 🛍️"
+          text="A collection of Enzo-approved merchandise for his most devoted fans."
           href="/merch"
-          pill="drip (but dog)"
+          // pill="drip (but dog)"
         />
         <FeatureCard
-          emoji="📝"
-          title="Blog"
+          // emoji="📝"
+          title="Blog 📝"
           text="Hard-hitting journalism: snack reviews, nap reports, and scandal updates."
           href="/blog"
-          pill="breaking woofs"
+          // pill="breaking woofs"
         />
       </section>
 
@@ -103,9 +103,20 @@ export default function HomePage() {
 
           <Link
             href="/gallery"
-            className="inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-foreground transition hover:brightness-95 active:scale-[0.99] md:w-auto"
+            className="group inline-flex w-full items-center justify-center gap-2 
+            rounded-full border border-secondary/55 bg-secondary px-6 py-3 text-sm font-semibold 
+            text-foreground shadow-[0_8px_18px_rgba(217,130,43,0.22)] transition-all duration-300 
+            hover:-translate-y-0.5 hover:border-primary/70 hover:bg-primary 
+            hover:shadow-[0_0_0_1px_rgba(217,130,43,0.28),0_10px_22px_rgba(217,130,43,0.26),0_0_24px_rgba(241,198,106,0.34)] 
+            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/45 active:scale-[0.99] md:w-auto"
           >
-            Begin the Tour
+            <span>Begin Tour</span>
+            <span
+              aria-hidden="true"
+              className="transition-transform duration-300 group-hover:translate-x-0.5"
+            >
+              &rarr;
+            </span>
           </Link>
         </div>
       </section>
@@ -114,34 +125,38 @@ export default function HomePage() {
 }
 
 function FeatureCard({
-  emoji,
+  // emoji,
   title,
   text,
   href,
-  pill,
+  // pill,
 }: {
-  emoji: string;
+  // emoji: string;
   title: string;
   text: string;
   href: string;
-  pill: string;
+  // pill: string;
 }) {
   return (
     <Link
       href={href}
       className="group rounded-3xl border border-border bg-card p-6 shadow-(--shadow) transition hover:-translate-y-0.5 hover:shadow-lg"
     >
-      <div className="flex items-start justify-between gap-3">
-        <div className="text-3xl">{emoji}</div>
-        <span className="rounded-full bg-(--primary)/25 px-3 py-1 text-xs font-medium">
+      {/* <div className="flex items-start justify-between gap-3"> */}
+        {/* <div className="text-3xl">{emoji}</div> */}
+        {/* <span className="rounded-full bg-(--primary)/25 px-3 py-1 text-xs font-medium">
           {pill}
-        </span>
-      </div>
+        </span> */}
+      {/* </div> */}
 
-      <h3 className="mt-4 text-lg font-bold">{title}</h3>
+      <h3 className="text-lg font-bold">{title}</h3>
       <p className="mt-2 text-sm text-foreground/75">{text}</p>
 
-      <p className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-(--primary)/22 px-3 py-1 text-sm font-semibold text-foreground/90 shadow-none transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-secondary/45 group-hover:bg-(--primary)/30 group-hover:text-secondary group-hover:shadow-[0_0_0_1px_rgba(217,130,43,0.25),0_8px_18px_rgba(241,198,106,0.22),0_0_22px_rgba(217,130,43,0.32)]">
+      <p className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-primary/25 
+                    bg-(--primary)/22 px-3 py-1 text-sm font-semibold text-foreground/90 shadow-none 
+                    transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-secondary/45 
+                    group-hover:bg-(--primary)/30 group-hover:text-secondary 
+                    group-hover:shadow-[0_0_0_1px_rgba(217,130,43,0.25),0_8px_18px_rgba(241,198,106,0.22),0_0_22px_rgba(217,130,43,0.32)]">
         <span>Explore</span>
         <span
           aria-hidden="true"

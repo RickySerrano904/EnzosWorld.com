@@ -55,23 +55,35 @@ export default function AboutPage() {
           If you want to brighten Enzo’s day with a toy, treat, or snack, here are some ways to do it:
         </p>
 
-      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <a
             href="https://www.amazon.com/hz/wishlist/your-wishlist-id"
-            className="inline-flex items-center justify-center rounded-full bg-secondary px-6 py-3 text-sm font-semibold text-white transition hover:brightness-95"
+            className="group inline-flex items-center justify-center gap-2 rounded-full border border-secondary/55 bg-secondary px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_18px_rgba(217,130,43,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/70 hover:bg-primary hover:text-foreground hover:shadow-[0_0_0_1px_rgba(217,130,43,0.28),0_10px_22px_rgba(217,130,43,0.26),0_0_24px_rgba(241,198,106,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/45 active:scale-[0.99]"
             target="_blank"
             rel="noopener noreferrer"
           >
-            🎁 Amazon Wish List
+            <span
+              aria-hidden="true"
+              className="transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110"
+            >
+              🎁
+            </span>
+            <span>Amazon Wish List</span>
           </a>
 
           <a
             href="https://www.chewy.com/gift-registry/your-registry-id"
-            className="inline-flex items-center justify-center rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold transition hover:bg-(--primary)/20"
+            className="group inline-flex items-center justify-center gap-2 rounded-full border border-primary/35 bg-background/85 px-6 py-3 text-sm font-semibold text-foreground/90 shadow-none transition-all duration-300 hover:-translate-y-0.5 hover:border-secondary/55 hover:bg-(--primary)/25 hover:text-secondary hover:shadow-[0_0_0_1px_rgba(217,130,43,0.24),0_8px_18px_rgba(241,198,106,0.22),0_0_22px_rgba(217,130,43,0.28)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/45 active:scale-[0.99]"
             target="_blank"
             rel="noopener noreferrer"
           >
-            🐾 Chewy Gift Registry
+            <span
+              aria-hidden="true"
+              className="transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110"
+            >
+              🐾
+            </span>
+            <span>Chewy Gift Registry</span>
           </a>
         </div>
       </section>

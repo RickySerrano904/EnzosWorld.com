@@ -139,6 +139,9 @@ function Thumb({
 
 export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<SelectedImage | null>(null);
+  const [slideDirection, setSlideDirection] = useState<"next" | "prev" | null>(
+    null
+  );
   const [collapsedYears, setCollapsedYears] = useState<Record<string, boolean>>(
     {}
   );
@@ -193,10 +196,13 @@ export default function GalleryPage() {
     preload(src);
     preloadNeighbors(year, index);
 
+    setSlideDirection(null);
     setSelectedImage({ year, index, src, alt: filename });
   };
 
   const navigateImage = (offset: number) => {
+    setSlideDirection(offset > 0 ? "next" : "prev");
+
     setSelectedImage((prev) => {
       if (!prev) return prev;
 
@@ -347,16 +353,27 @@ export default function GalleryPage() {
               </span>
             </button>
 
-            <div className="relative h-[80vh] w-full bg-black">
-              <Image
-                src={selectedImage.src}
-                alt={selectedImage.alt}
-                fill
-                className="object-contain"
-                sizes="(max-width: 1024px) 100vw, 1024px"
-                priority
-                loading="eager"
-              />
+            <div className="relative h-[80vh] w-full overflow-hidden bg-black">
+              <div
+                key={selectedImage.src}
+                className={`absolute inset-0 ${
+                  slideDirection === "next"
+                    ? "gallery-slide-next"
+                    : slideDirection === "prev"
+                      ? "gallery-slide-prev"
+                      : ""
+                }`}
+              >
+                <Image
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                  priority
+                  loading="eager"
+                />
+              </div>
             </div>
 
             <div className="flex items-center justify-between gap-4 border-t border-border bg-background p-4 text-sm text-foreground/70">

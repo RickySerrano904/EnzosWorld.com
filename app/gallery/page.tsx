@@ -143,9 +143,20 @@ export default function GalleryPage() {
     {}
   );
 
-  // 2024 above 2025 (ascending)
+  const imagesByYear = useMemo(
+    () =>
+      Object.fromEntries(
+        Object.entries(imageData).map(([year, files]) => [
+          year,
+          [...files].sort((a, b) => b.localeCompare(a)),
+        ])
+      ) as Record<string, string[]>,
+    []
+  );
+
+  // Newest years first
   const years = useMemo(
-    () => Object.keys(imageData).sort((a, b) => Number(a) - Number(b)),
+    () => Object.keys(imageData).sort((a, b) => Number(b) - Number(a)),
     []
   );
 
@@ -161,7 +172,7 @@ export default function GalleryPage() {
   };
 
   const preloadNeighbors = (year: string, index: number) => {
-    const files = imageData[year];
+    const files = imagesByYear[year];
     if (!files?.length) return;
 
     const prev = files[(index - 1 + files.length) % files.length];
@@ -172,7 +183,7 @@ export default function GalleryPage() {
   };
 
   const openImage = (year: string, index: number) => {
-    const files = imageData[year];
+    const files = imagesByYear[year];
     if (!files?.length) return;
 
     const filename = files[index];
@@ -189,7 +200,7 @@ export default function GalleryPage() {
     setSelectedImage((prev) => {
       if (!prev) return prev;
 
-      const files = imageData[prev.year];
+      const files = imagesByYear[prev.year];
       if (!files?.length) return prev;
 
       let newIndex = prev.index + offset;
@@ -234,7 +245,7 @@ export default function GalleryPage() {
       </header>
 
       {years.map((year) => {
-        const files = imageData[year];
+        const files = imagesByYear[year];
         const isCollapsed = collapsedYears[year];
 
         return (
@@ -352,7 +363,7 @@ export default function GalleryPage() {
               <span className="truncate">{selectedImage.alt}</span>
               <span className="shrink-0">
                 {selectedImage.year} • {selectedImage.index + 1}/
-                {imageData[selectedImage.year].length}
+                {imagesByYear[selectedImage.year].length}
               </span>
             </div>
           </div>

@@ -23,15 +23,15 @@ export function BlogIndex({ config }: BlogIndexProps) {
         <p className="text-foreground/70">{config.description}</p>
       </header>
 
-      <ul className="grid gap-4">
+      <ul className="grid min-w-0 gap-4">
         {config.posts.map((post) => (
-          <li key={post.slug}>
+          <li key={post.slug} className="min-w-0">
             <Link
               href={`${config.basePath}/${post.slug}`}
-              className="group block rounded-3xl border border-border bg-card p-5 shadow-(--shadow) transition hover:-translate-y-0.5 hover:shadow-lg"
+              className="group block min-w-0 overflow-hidden rounded-3xl border border-border bg-card p-4 shadow-(--shadow) transition hover:-translate-y-0.5 hover:shadow-lg sm:p-5"
             >
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex min-w-0 items-center gap-4">
+              <div className="flex min-w-0 flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex min-w-0 items-center gap-3 sm:gap-4">
                   <div className="h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-border/70">
                     <Image
                       src={post.thumbnailSrc}
@@ -50,7 +50,7 @@ export function BlogIndex({ config }: BlogIndexProps) {
                   </div>
                 </div>
 
-                <span className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-(--primary)/22 px-3 py-1 text-xs font-semibold text-foreground/90 shadow-none transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-secondary/45 group-hover:bg-(--primary)/30 group-hover:text-secondary group-hover:shadow-[0_0_0_1px_rgba(217,130,43,0.25),0_8px_18px_rgba(241,198,106,0.22),0_0_22px_rgba(217,130,43,0.32)]">
+                <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/25 bg-(--primary)/22 px-3 py-1 text-xs font-semibold text-foreground/90 shadow-none transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-secondary/45 group-hover:bg-(--primary)/30 group-hover:text-secondary group-hover:shadow-[0_0_0_1px_rgba(217,130,43,0.25),0_8px_18px_rgba(241,198,106,0.22),0_0_22px_rgba(217,130,43,0.32)]">
                   <span>{readLabel}</span>
                   <ArrowRight
                     aria-hidden="true"

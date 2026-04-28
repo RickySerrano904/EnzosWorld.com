@@ -23,6 +23,8 @@ html.light {
   /* Optional UI helpers */
   --border: rgba(0, 26, 35, 0.14);
   --shadow: 0 10px 28px rgba(0, 26, 35, 0.10);
+  --nav: var(--secondary);
+  --nav-text: var(--card);
 }
 
 /* Dark Mode */
@@ -42,6 +44,8 @@ html.dark {
   /* Optional UI helpers */
   --border: rgba(247, 234, 216, 0.20);
   --shadow: 0 14px 34px rgba(20, 12, 8, 0.34);
+  --nav: #2f2119;
+  --nav-text: var(--text);
 }
 
 /* Tailwind v4 theme mapping (so classes like bg-background work) */
@@ -83,6 +87,34 @@ h6,
 .blog-card-title {
   font-family: var(--font-rethink), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.site-navbar {
+  background: var(--nav);
+  border-color: var(--nav);
+}
+
+.site-navbar-text {
+  color: var(--nav-text);
+}
+
+.site-navbar-subtle {
+  color: color-mix(in srgb, var(--nav-text) 85%, transparent);
+}
+
+.site-navbar-subtle:hover {
+  color: var(--nav-text);
+}
+
+.site-navbar-panel {
+  background: var(--nav);
+  border-color: var(--nav);
+}
+
+.site-navbar-menu-button {
+  background: color-mix(in srgb, var(--nav-text) 12%, transparent);
+  border-color: color-mix(in srgb, var(--nav-text) 30%, transparent);
+  color: var(--nav-text);
 }
 
 

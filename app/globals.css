@@ -73,6 +73,18 @@ body {
     radial-gradient(circle at 30% 80%, rgba(94, 143, 122, 0.10), transparent 48%);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading,
+.blog-card-title {
+  font-family: var(--font-rethink), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Arial, sans-serif;
+}
+
 
 
 /* Nice default selection highlight */

@@ -35,13 +35,13 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-card">
+    <header className="sticky top-0 z-50 border-b border-secondary bg-secondary">
       {/* Make header a positioning context */}
       <div className="relative">
         <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link
             href="/"
-className="text-lg sm:text-xl font-extrabold tracking-tight text-secondary"
+            className="font-heading text-2xl font-extrabold tracking-tight text-card sm:text-3xl"
           >
             🐾 Enzo&apos;s World
           </Link>
@@ -57,8 +57,8 @@ className="text-lg sm:text-xl font-extrabold tracking-tight text-secondary"
                   className={[
                     "rounded-full px-4 py-2 text-sm font-medium transition",
                     active
-                      ? "bg-[color-mix(in_srgb,var(--primary)_28%,transparent)] text-foreground"
-                      : "text-foreground/80 hover:bg-[color-mix(in_srgb,var(--primary)_25%,transparent)] hover:text-foreground",
+                      ? "bg-[color-mix(in_srgb,var(--primary)_32%,transparent)] text-card"
+                      : "text-card/80 hover:bg-[color-mix(in_srgb,var(--primary)_25%,transparent)] hover:text-card",
                   ].join(" ")}
                 >
                   {l.label}
@@ -71,7 +71,7 @@ className="text-lg sm:text-xl font-extrabold tracking-tight text-secondary"
               <button
                 type="button"
                 onClick={toggleTheme}
-                className="rounded-full px-4 py-2 text-foreground/80 transition hover:bg-[color-mix(in_srgb,var(--primary)_25%,transparent)] hover:text-foreground"
+                className="rounded-full px-4 py-2 text-card/80 transition hover:bg-[color-mix(in_srgb,var(--primary)_25%,transparent)] hover:text-card"
                 aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
               >
                 {theme === "light" ? (
@@ -86,7 +86,7 @@ className="text-lg sm:text-xl font-extrabold tracking-tight text-secondary"
           {/* Mobile button */}
           <button
             type="button"
-            className="md:hidden inline-flex items-center justify-center rounded-full border border-border bg-background px-3 py-2 text-sm font-semibold"
+            className="md:hidden inline-flex items-center justify-center rounded-full border border-card/30 bg-card/12 px-3 py-2 text-sm font-semibold text-card"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
@@ -106,7 +106,7 @@ className="text-lg sm:text-xl font-extrabold tracking-tight text-secondary"
             />
 
             {/* Dropdown panel */}
-            <div className="absolute left-0 right-0 top-full z-50 md:hidden border-b border-border bg-card shadow-(--shadow)">
+            <div className="absolute left-0 right-0 top-full z-50 md:hidden border-b border-secondary bg-secondary shadow-(--shadow)">
               <nav className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-3">
                 <div className="grid gap-2">
                   {links.map((l) => {
@@ -118,8 +118,8 @@ className="text-lg sm:text-xl font-extrabold tracking-tight text-secondary"
                         className={[
                           "rounded-2xl px-4 py-3 text-sm font-semibold transition",
                           active
-                            ? "bg-[color-mix(in_srgb,var(--primary)_28%,transparent)] text-foreground"
-                            : "text-foreground/85 hover:bg-[color-mix(in_srgb,var(--primary)_22%,transparent)] hover:text-foreground",
+                            ? "bg-[color-mix(in_srgb,var(--primary)_32%,transparent)] text-card"
+                            : "text-card/85 hover:bg-[color-mix(in_srgb,var(--primary)_22%,transparent)] hover:text-card",
                         ].join(" ")}
                       >
                         {l.label}
@@ -132,7 +132,7 @@ className="text-lg sm:text-xl font-extrabold tracking-tight text-secondary"
                     <button
                       type="button"
                       onClick={toggleTheme}
-                      className="rounded-2xl px-4 py-3 text-sm font-semibold text-foreground/85 transition hover:bg-[color-mix(in_srgb,var(--primary)_22%,transparent)] hover:text-foreground flex items-center gap-2"
+                      className="rounded-2xl px-4 py-3 text-sm font-semibold text-card/85 transition hover:bg-[color-mix(in_srgb,var(--primary)_22%,transparent)] hover:text-card flex items-center gap-2"
                       aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
                     >
                       {theme === "light" ? (

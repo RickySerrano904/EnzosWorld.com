@@ -1,8 +1,33 @@
 // app/layout.tsx
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import { Rethink_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/app/components/Navbar";
+
+const rethinkSans = Rethink_Sans({
+  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+  variable: "--font-rethink",
+  display: "swap",
+});
+
+const themeScript = `
+  (function () {
+    try {
+      var savedTheme = window.localStorage.getItem("theme");
+      var systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+      var theme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : systemTheme;
+
+      document.documentElement.classList.remove("light", "dark");
+      document.documentElement.classList.add(theme);
+    } catch {
+      document.documentElement.classList.add("light");
+    }
+  })();
+`;
 
 export const metadata: Metadata = {
   title: "Enzo's World",
@@ -19,7 +44,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={rethinkSans.variable} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="min-h-screen bg-background text-foreground">
         <Navbar />
 

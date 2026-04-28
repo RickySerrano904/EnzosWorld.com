@@ -105,8 +105,9 @@ export default function HomePage() {
             href="/gallery"
             className="group inline-flex w-full items-center justify-center gap-2 
             rounded-full border border-secondary/55 bg-secondary px-6 py-3 text-sm font-semibold 
-            text-foreground shadow-[0_8px_18px_rgba(217,130,43,0.22)] transition-all duration-300 
+            text-card shadow-[0_8px_18px_rgba(217,130,43,0.22)] transition-all duration-300 
             hover:-translate-y-0.5 hover:border-primary/70 hover:bg-primary 
+            hover:text-foreground 
             hover:shadow-[0_0_0_1px_rgba(217,130,43,0.28),0_10px_22px_rgba(217,130,43,0.26),0_0_24px_rgba(241,198,106,0.34)] 
             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/45 active:scale-[0.99] md:w-auto"
           >

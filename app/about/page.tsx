@@ -30,8 +30,8 @@ export default function AboutPage() {
         />
         <InfoCard
           title="Is the merch real?"
-          emoji="🧾"
-          text="The merch is not. The vibe is extremely real though..."
+          emoji="🛍️"
+          text="Yes. Enzo has gone professional, and the official shop is open."
         />
       </section>
 

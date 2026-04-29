@@ -6,8 +6,26 @@ export default function HomePage() {
   return (
     <main className="space-y-6">
       {/* Hero */}
-      <section className="rounded-3xl border border-border bg-card p-8 shadow-(--shadow)">
-        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+      <section
+        className="
+          rounded-3xl
+          border
+          border-border
+          bg-card
+          p-8
+          shadow-(--shadow)
+        "
+      >
+        <div
+          className="
+            flex
+            flex-col
+            gap-6
+            md:flex-row
+            md:items-center
+            md:justify-between
+          "
+        >
           <div className="space-y-4">
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
               Enzo&apos;s World
@@ -21,8 +39,26 @@ export default function HomePage() {
           </div>
 
           {/* Enzo photo card */}
-          <div className="w-full max-w-sm mx-auto md:mx-0">
-            <div className="relative aspect-square overflow-hidden rounded-3xl border border-border bg-card shadow-(--shadow)">
+          <div
+            className="
+              mx-auto
+              w-full
+              max-w-sm
+              md:mx-0
+            "
+          >
+            <div
+              className="
+                relative
+                aspect-square
+                overflow-hidden
+                rounded-3xl
+                border
+                border-border
+                bg-card
+                shadow-(--shadow)
+              "
+            >
               <Image
                 src="/images/home/homeImage.jpg"
                 alt="Enzo the golden retriever"
@@ -33,7 +69,16 @@ export default function HomePage() {
               />
 
               {/* Caption overlay */}
-              <div className="absolute bottom-0 w-full bg-background/80 p-4 backdrop-blur">
+              <div
+                className="
+                  absolute
+                  bottom-0
+                  w-full
+                  bg-background/80
+                  p-4
+                  backdrop-blur
+                "
+              >
                 <p className="text-sm font-semibold">Enzo</p>
                 <p className="text-xs text-foreground/70">CEO of Snacks</p>
               </div>
@@ -68,7 +113,16 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="rounded-3xl border border-border bg-card p-8 shadow-(--shadow)">
+      <section
+        className="
+          rounded-3xl
+          border
+          border-border
+          bg-card
+          p-8
+          shadow-(--shadow)
+        "
+      >
         <h2 className="text-2xl font-bold">What people are saying</h2>
         <p className="mt-2 text-foreground/70">
           Totally real reviews from totally real sources.
@@ -91,8 +145,29 @@ export default function HomePage() {
       </section>
 
       {/* Call to action */}
-      <section className="group rounded-3xl border border-border bg-(--accent)/18 p-8 transition hover:-translate-y-0.5 hover:shadow-lg">
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <section
+        className="
+          group
+          rounded-3xl
+          border
+          border-border
+          bg-(--accent)/18
+          p-8
+          transition
+          hover:-translate-y-0.5
+          hover:shadow-lg
+        "
+      >
+        <div
+          className="
+            flex
+            flex-col
+            gap-4
+            md:flex-row
+            md:items-center
+            md:justify-between
+          "
+        >
           <div>
             <h2 className="text-2xl font-bold">Want the full Enzo experience?</h2>
             <p className="mt-2 text-foreground/75">
@@ -103,25 +178,35 @@ export default function HomePage() {
 
           <Link
             href="/gallery"
-            className="inline-flex w-full items-center justify-center gap-2  
-            rounded-full 
-            border border-secondary/55 
-            bg-secondary 
-            px-6 py-3 
-            text-sm 
-            font-semibold 
-            text-card shadow-[0_8px_18px_rgba(217,130,43,0.22)] 
-            transition-all duration-300 
-            group-hover:-translate-y-0.5 
-            group-hover:border-primary/70 
-            group-hover:bg-primary 
-            group-hover:text-foreground 
-            group-hover:shadow-[0_0_0_1px_rgba(217,130,43,0.28),0_10px_22px_rgba(217,130,43,0.26),0_0_24px_rgba(241,198,106,0.34)] 
-            focus-visible:outline-none 
-            focus-visible:ring-2 
-            focus-visible:ring-secondary/45 
-            active:scale-[0.99] 
-            md:w-auto"
+            className="
+              inline-flex
+              w-full
+              items-center
+              justify-center
+              gap-2
+              rounded-full
+              border
+              border-secondary/55
+              bg-secondary
+              px-6
+              py-3
+              text-sm
+              font-semibold
+              text-card
+              shadow-[0_8px_18px_rgba(217,130,43,0.22)]
+              transition-all
+              duration-300
+              group-hover:-translate-y-0.5
+              group-hover:border-primary/70
+              group-hover:bg-primary
+              group-hover:text-foreground
+              group-hover:shadow-[0_0_0_1px_rgba(217,130,43,0.28),0_10px_22px_rgba(217,130,43,0.26),0_0_24px_rgba(241,198,106,0.34)]
+              focus-visible:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-secondary/45
+              active:scale-[0.99]
+              md:w-auto
+            "
           >
             <span>Begin Tour</span>
             <span
@@ -151,16 +236,47 @@ function FeatureCard({
   return (
     <Link
       href={href}
-      className="group rounded-3xl border border-border bg-card p-6 shadow-(--shadow) transition hover:-translate-y-0.5 hover:shadow-lg"
+      className="
+        group
+        rounded-3xl
+        border
+        border-border
+        bg-card
+        p-6
+        shadow-(--shadow)
+        transition
+        hover:-translate-y-0.5
+        hover:shadow-lg
+      "
     >
       <h3 className="text-lg font-bold">{title}</h3>
       <p className="mt-2 text-sm text-foreground/75">{text}</p>
 
-      <p className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-primary/25 
-                    bg-(--primary)/22 px-3 py-1 text-sm font-semibold text-foreground/90 shadow-none 
-                    transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-secondary/45 
-                    group-hover:bg-(--primary)/30 group-hover:text-secondary 
-                    group-hover:shadow-[0_0_0_1px_rgba(217,130,43,0.25),0_8px_18px_rgba(241,198,106,0.22),0_0_22px_rgba(217,130,43,0.32)]">
+      <p
+        className="
+          mt-4
+          inline-flex
+          items-center
+          gap-1.5
+          rounded-full
+          border
+          border-primary/25
+          bg-(--primary)/22
+          px-3
+          py-1
+          text-sm
+          font-semibold
+          text-foreground/90
+          shadow-none
+          transition-all
+          duration-300
+          group-hover:-translate-y-0.5
+          group-hover:border-secondary/45
+          group-hover:bg-(--primary)/30
+          group-hover:text-secondary
+          group-hover:shadow-[0_0_0_1px_rgba(217,130,43,0.25),0_8px_18px_rgba(241,198,106,0.22),0_0_22px_rgba(217,130,43,0.32)]
+        "
+      >
         <span>Explore</span>
         <span
           aria-hidden="true"

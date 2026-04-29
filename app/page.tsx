@@ -91,7 +91,7 @@ export default function HomePage() {
       </section>
 
       {/* Call to action */}
-      <section className="rounded-3xl border border-border bg-(--accent)/18 p-8">
+      <section className="group rounded-3xl border border-border bg-(--accent)/18 p-8 transition hover:-translate-y-0.5 hover:shadow-lg">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <h2 className="text-2xl font-bold">Want the full Enzo experience?</h2>
@@ -103,13 +103,25 @@ export default function HomePage() {
 
           <Link
             href="/gallery"
-            className="group inline-flex w-full items-center justify-center gap-2 
-            rounded-full border border-secondary/55 bg-secondary px-6 py-3 text-sm font-semibold 
-            text-card shadow-[0_8px_18px_rgba(217,130,43,0.22)] transition-all duration-300 
-            hover:-translate-y-0.5 hover:border-primary/70 hover:bg-primary 
-            hover:text-foreground 
-            hover:shadow-[0_0_0_1px_rgba(217,130,43,0.28),0_10px_22px_rgba(217,130,43,0.26),0_0_24px_rgba(241,198,106,0.34)] 
-            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/45 active:scale-[0.99] md:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2  
+            rounded-full 
+            border border-secondary/55 
+            bg-secondary 
+            px-6 py-3 
+            text-sm 
+            font-semibold 
+            text-card shadow-[0_8px_18px_rgba(217,130,43,0.22)] 
+            transition-all duration-300 
+            group-hover:-translate-y-0.5 
+            group-hover:border-primary/70 
+            group-hover:bg-primary 
+            group-hover:text-foreground 
+            group-hover:shadow-[0_0_0_1px_rgba(217,130,43,0.28),0_10px_22px_rgba(217,130,43,0.26),0_0_24px_rgba(241,198,106,0.34)] 
+            focus-visible:outline-none 
+            focus-visible:ring-2 
+            focus-visible:ring-secondary/45 
+            active:scale-[0.99] 
+            md:w-auto"
           >
             <span>Begin Tour</span>
             <span
@@ -125,31 +137,22 @@ export default function HomePage() {
   );
 }
 
+
+
 function FeatureCard({
-  // emoji,
   title,
   text,
   href,
-  // pill,
 }: {
-  // emoji: string;
   title: string;
   text: string;
   href: string;
-  // pill: string;
 }) {
   return (
     <Link
       href={href}
       className="group rounded-3xl border border-border bg-card p-6 shadow-(--shadow) transition hover:-translate-y-0.5 hover:shadow-lg"
     >
-      {/* <div className="flex items-start justify-between gap-3"> */}
-        {/* <div className="text-3xl">{emoji}</div> */}
-        {/* <span className="rounded-full bg-(--primary)/25 px-3 py-1 text-xs font-medium">
-          {pill}
-        </span> */}
-      {/* </div> */}
-
       <h3 className="text-lg font-bold">{title}</h3>
       <p className="mt-2 text-sm text-foreground/75">{text}</p>
 

@@ -224,11 +224,7 @@ export default function HomePage() {
 
 
 
-function FeatureCard({
-  title,
-  text,
-  href,
-}: {
+function FeatureCard({title, text, href,}: {
   title: string;
   text: string;
   href: string;

@@ -28,3 +28,7 @@ The goal of this project is to combine a polished user interface with a fun, per
 - Library: React
 - Language: TypeScript
 - Styling: Tailwind CSS (v4)
+
+## Deployment
+
+This project is deployed on Vercel. DNS is managed through Cloudflare.

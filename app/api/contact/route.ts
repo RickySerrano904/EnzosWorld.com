@@ -3,8 +3,6 @@ import { Resend } from "resend";
 
 export const runtime = "nodejs";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 type Topic =
   | "Gallery submission"
   | "Blog idea"
@@ -111,12 +109,16 @@ export async function POST(req: Request) {
     const to = process.env.CONTACT_TO_EMAIL;
     const from = process.env.CONTACT_FROM_EMAIL;
 
-    if (!to || !from || !process.env.RESEND_API_KEY) {
+    const resendApiKey = process.env.RESEND_API_KEY;
+
+    if (!to || !from || !resendApiKey) {
       return NextResponse.json(
         { error: "Server not configured (missing email env vars)." },
         { status: 500 }
       );
     }
+
+    const resend = new Resend(resendApiKey);
 
     await resend.emails.send({
       from,

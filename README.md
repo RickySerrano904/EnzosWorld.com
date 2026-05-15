@@ -1,12 +1,12 @@
-# Enzo’s World
+# Enzo's World
 
-Enzo’s World is a clean, playful web application dedicated to Enzo — a professional snack enthusiast, part-time chaos gremlin, and full-time good boy.
+Enzo's World is a clean, playful web application dedicated to Enzo: professional snack enthusiast, full-time good boy, and occasional author of suspiciously detailed field reports.
 
-The site includes a photo gallery, blog posts, a fictional merch section, and a contact form for submissions, ideas, or general inquiries. While the tone is lighthearted, the project emphasizes solid frontend architecture, responsive design, and practical form handling.
+The site combines a curated photo gallery, MDX-powered blog posts, a contact form, and a merch bridge to Enzo's official Fourthwall shop. The tone is lighthearted, but the implementation focuses on responsive UI, reusable components, accessible interactions, and practical form handling.
 
 ## Overview
 
-The goal of this project is to combine a polished user interface with a fun, personality-driven theme. The layout is intentionally card-based and consistent across pages, with a strong focus on spacing, readability, and responsiveness.
+Enzo's World is designed to feel like a small, complete home base for everything Enzo: photos, stories, contact, and merch all share the same warm visual style while staying easy to browse on any device.
 
 ## Screenshots
 
@@ -22,7 +22,7 @@ The goal of this project is to combine a polished user interface with a fun, per
 | --- | --- |
 | ![Blog page listing Enzo field reports](public/images/readme-screenshots/screen-5.png) | ![About page with Enzo details and stats](public/images/readme-screenshots/screen-6.png) |
 
-| Contact | Merch |
+| Contact | Merch Shop Link |
 | --- | --- |
 | ![Contact page with message form and team details](public/images/readme-screenshots/screen-7.png) | ![Merch page linking to the Enzo shop](public/images/readme-screenshots/screen-8.png) |
 
@@ -32,25 +32,45 @@ The goal of this project is to combine a polished user interface with a fun, per
 
 ## Features
 
-1. Gallery: A curated collection of Enzo photos, organized and displayed with a clean, responsive layout.
+1. Gallery: A curated collection of Enzo photos organized in a responsive grid, with a lightbox for browsing full-size images.
 
-2. Blog: Lighthearted blog posts written from Enzo’s perspective, rendered using modern routing and layout patterns.
+2. Blog: Lighthearted MDX posts written from Enzo's perspective, rendered through modern Next.js routing and reusable page layouts.
 
-3. Merch: A just-for-fun merch section designed to showcase layout consistency and UI patterns.
+3. Merch: A dedicated merch page that sends visitors to Enzo's official Fourthwall storefront at `shop.enzosworld.com`.
 
-4. Contact Form: A fully implemented contact form with client-side validation, spam protection using Cloudflare Turnstile, and a honeypot field to reduce automated submissions.
+4. Contact Form: A production contact flow with client-side validation, Cloudflare Turnstile verification, and email delivery through Resend.
 
 5. Responsive Design: The entire site is optimized for both desktop and mobile devices, with layouts that adapt cleanly across screen sizes.
 
-6. Custom Theme: A warm, friendly visual theme built with reusable card components and consistent spacing, shadows, and typography.
+6. Custom Theme: A warm, friendly visual system with light and dark modes, reusable card components, consistent spacing, and polished typography.
 
 ## Tech Stack
 
-- Framework: Next.js
-- Library: React
+- Framework: Next.js 16
+- Library: React 19
 - Language: TypeScript
-- Styling: Tailwind CSS (v4)
+- Styling: Tailwind CSS v4
+- Content: MDX
+- Form protection: Cloudflare Turnstile and a honeypot field
+- Email: Resend
+
+## Local Development
+
+Install dependencies and start the development server:
+
+```bash
+npm install
+npm run dev
+```
+
+Create the required environment variables for the contact form before testing submissions:
+
+- `NEXT_PUBLIC_TURNSTILE_SITE_KEY`
+- `TURNSTILE_SECRET_KEY`
+- `RESEND_API_KEY`
+- `CONTACT_TO_EMAIL`
+- `CONTACT_FROM_EMAIL`
 
 ## Deployment
 
-This project is deployed on Vercel. DNS is managed through Cloudflare.
+The main site is deployed on Vercel. DNS is managed through Cloudflare, and the shop subdomain points visitors to the Fourthwall storefront.

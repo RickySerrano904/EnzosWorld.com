@@ -32,6 +32,9 @@ const themeScript = `
 export const metadata: Metadata = {
   title: "Enzo's World",
   description: "A joke website dedicated to Enzo the golden retriever",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export const viewport: Viewport = {

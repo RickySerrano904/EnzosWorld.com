@@ -90,25 +90,19 @@ export default function HomePage() {
       {/* Feature cards */}
       <section className="grid gap-6 md:grid-cols-3">
         <FeatureCard
-          // emoji="📸"
           title="Gallery 📸"
           text="A collection of photos showcasing Enzo's adventures and mischievous moments."
           href="/gallery"
-          // pill="soft chaos"
         />
         <FeatureCard
-          // emoji="🛍️"
           title="Merch 🛍️"
           text="A collection of Enzo-approved merchandise for his most devoted fans."
           href="/merch"
-          // pill="drip (but dog)"
         />
         <FeatureCard
-          // emoji="📝"
           title="Blog 📝"
           text="Hard-hitting journalism: snack reviews, nap reports, and scandal updates."
           href="/blog"
-          // pill="breaking woofs"
         />
       </section>
 
@@ -183,7 +177,6 @@ export default function HomePage() {
               w-full
               items-center
               justify-center
-              gap-2
               rounded-full
               border
               border-secondary/55
@@ -192,6 +185,7 @@ export default function HomePage() {
               py-3
               text-sm
               font-semibold
+              whitespace-nowrap
               text-card
               shadow-[0_8px_18px_rgba(217,130,43,0.22)]
               transition-all
@@ -209,12 +203,6 @@ export default function HomePage() {
             "
           >
             <span>Begin Tour</span>
-            <span
-              aria-hidden="true"
-              className="transition-transform duration-300 group-hover:translate-x-0.5"
-            >
-              &rarr;
-            </span>
           </Link>
         </div>
       </section>
@@ -293,4 +281,3 @@ function Quote({ who, text }: { who: string; text: string }) {
     </div>
   );
 }
-

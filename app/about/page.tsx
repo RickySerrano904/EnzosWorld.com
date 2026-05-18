@@ -3,7 +3,6 @@ import BackHomeButton from "@/app/components/BackHomeButton";
 
 export default function AboutPage() {
   return (
-
     <main className="space-y-6">
       <BackHomeButton />
 
@@ -12,7 +11,7 @@ export default function AboutPage() {
           About <span className="text-secondary">📃</span>
         </h1>
         <p className="text-foreground/70">
-          This is a website dedicated to Enzo — a professional snack enthusiast, 
+          This is a website dedicated to Enzo — a professional snack enthusiast,
           part-time chaos gremlin, and full-time best boy.
         </p>
       </header>
@@ -37,9 +36,7 @@ export default function AboutPage() {
 
       <section className="rounded-3xl border border-border bg-card p-8 shadow-(--shadow)">
         <h2 className="text-2xl font-bold">Enzo&apos;s Certified Stats</h2>
-        <p className="mt-2 text-foreground/70">
-          Verified by the board.
-        </p>
+        <p className="mt-2 text-foreground/70">Verified by the board.</p>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Stat label="Snack Radar" value="Elite" />
@@ -50,40 +47,24 @@ export default function AboutPage() {
       </section>
 
       <section className="rounded-3xl border border-border bg-(--accent)/18 p-8">
-        <h2 className="text-2xl font-bold">Want to send Enzo a toy or treat?</h2>
-        <p className="mt-2 max-w-2xl text-foreground/75">
-          If you want to brighten Enzo’s day with a toy, treat, or snack, here are some ways to do it:
-        </p>
+        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <div className="max-w-2xl">
+            <h2 className="text-2xl font-bold">
+              Want to send Enzo a toy or treat?
+            </h2>
+            <p className="mt-2 text-foreground/75">
+              Enzo keeps a small Amazon wishlist for toys, treats, and
+              snack-time essentials. It is an easy way to spoil him from afar!
+            </p>
+          </div>
 
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <a
-            href="https://www.amazon.com/hz/wishlist/your-wishlist-id"
-            className="group inline-flex items-center justify-center gap-2 rounded-full border border-secondary/55 bg-secondary px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_18px_rgba(217,130,43,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/70 hover:bg-primary hover:text-foreground hover:shadow-[0_0_0_1px_rgba(217,130,43,0.28),0_10px_22px_rgba(217,130,43,0.26),0_0_24px_rgba(241,198,106,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/45 active:scale-[0.99]"
+            href="https://www.amazon.com/hz/wishlist/ls/34H55F0LI7M22?ref_=wl_share"
+            className="inline-flex w-full items-center justify-center rounded-full border border-secondary/55 bg-secondary px-6 py-3 text-center text-sm font-semibold whitespace-nowrap text-white shadow-[0_8px_18px_rgba(217,130,43,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/70 hover:bg-primary hover:text-foreground hover:shadow-[0_0_0_1px_rgba(217,130,43,0.28),0_10px_22px_rgba(217,130,43,0.26),0_0_24px_rgba(241,198,106,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/45 active:scale-[0.99] sm:w-auto md:shrink-0"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span
-              aria-hidden="true"
-              className="transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110"
-            >
-              🎁
-            </span>
-            <span>Amazon Wish List</span>
-          </a>
-
-          <a
-            href="https://www.chewy.com/gift-registry/your-registry-id"
-            className="group inline-flex items-center justify-center gap-2 rounded-full border border-primary/35 bg-background/85 px-6 py-3 text-sm font-semibold text-foreground/90 shadow-none transition-all duration-300 hover:-translate-y-0.5 hover:border-secondary/55 hover:bg-(--primary)/25 hover:text-secondary hover:shadow-[0_0_0_1px_rgba(217,130,43,0.24),0_8px_18px_rgba(241,198,106,0.22),0_0_22px_rgba(217,130,43,0.28)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/45 active:scale-[0.99]"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span
-              aria-hidden="true"
-              className="transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110"
-            >
-              🐾
-            </span>
-            <span>Chewy Gift Registry</span>
+            Amazon Wishlist
           </a>
         </div>
       </section>
@@ -117,4 +98,3 @@ function Stat({ label, value }: { label: string; value: string }) {
     </div>
   );
 }
-// 

@@ -50,7 +50,7 @@ export default function AboutPage() {
       </section>
 
       <section className="rounded-3xl border border-border bg-(--accent)/18 p-8">
-        <h2 className="text-2xl font-bold">Want to contribute?</h2>
+        <h2 className="text-2xl font-bold">Want to send Enzo a toy or treat?</h2>
         <p className="mt-2 max-w-2xl text-foreground/75">
           If you want to brighten Enzo’s day with a toy, treat, or snack, here are some ways to do it:
         </p>

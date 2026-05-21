@@ -80,15 +80,6 @@ export default function ContactPage() {
         </p>
       </header>
 
-      {submitted && (
-        <section className="rounded-3xl border border-border bg-(--accent)/18 p-8">
-          <p className="text-sm font-semibold">✅ Message received!</p>
-          <p className="mt-1 text-sm text-foreground/75">
-            Enzo&apos;s assistant will respond in 2–3 business belly rubs.
-          </p>
-        </section>
-      )}
-
       {/* Matches About: small cards grid */}
       <section className="grid gap-6 md:grid-cols-2">
         <InfoCard
@@ -209,6 +200,15 @@ export default function ContactPage() {
                 : "Please complete the verification to enable sending."}
             </p>
           </div>
+
+          {submitted && (
+            <section className="rounded-3xl border border-border bg-(--accent)/18 p-8">
+              <p className="text-sm font-semibold">✅ Message received!</p>
+              <p className="mt-1 text-sm text-foreground/75">
+                Enzo&apos;s assistant will respond in 2–3 business belly rubs.
+              </p>
+            </section>
+          )}
 
           <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <button

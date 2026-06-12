@@ -56,7 +56,7 @@ export default function NewsletterSignup() {
       }
 
       setSubmissionState("success");
-      setMessage("You're on the list for Enzo's monthly field report.");
+      setMessage("You're on the list for future Enzo updates.");
       setFirstName("");
       setLastName("");
       setEmail("");
@@ -74,10 +74,10 @@ export default function NewsletterSignup() {
           <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/30 bg-background/80 text-secondary">
             <Mail aria-hidden="true" className="h-5 w-5" />
           </div>
-          <h2 className="text-2xl font-bold">Monthly Enzo dispatch</h2>
+          <h2 className="text-2xl font-bold">Enzo Newsletter</h2>
           <p className="text-sm text-foreground/75">
-            Get the latest blog posts, gallery updates, and snack-adjacent news once a
-            month.
+            Get Enzo's new blog posts, gallery updates, and snack-adjacent news delivered right to your inbox. 
+            No spam, we promise! You can unsubscribe anytime with one click.
           </p>
         </div>
 

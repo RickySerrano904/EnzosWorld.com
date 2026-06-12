@@ -36,7 +36,7 @@ Enzo's World is designed to feel like a small, complete home base for everything
 
 2. Blog: Lighthearted MDX posts written from Enzo's perspective, rendered through modern Next.js routing and reusable page layouts.
 
-3. Newsletter: A Turnstile-protected blog signup form that collects subscriber names and adds contacts to a Resend segment for monthly updates.
+3. Newsletter: A Turnstile-protected blog signup form that collects subscriber names and adds contacts to a Resend segment for occasional updates.
 
 4. Merch: A dedicated merch page that sends visitors to Enzo's official Fourthwall storefront at `shop.enzosworld.com`.
 
@@ -79,9 +79,9 @@ Use a Resend send-only key for `RESEND_CONTACT_API_KEY`. Use a Resend full-acces
 
 ## Newsletter
 
-The blog page includes a monthly newsletter signup form. Create a Resend segment for the newsletter, then set `RESEND_NEWSLETTER_SEGMENT_ID` to that segment ID in local and production environments.
+The blog page includes a newsletter signup form for occasional Enzo updates. Create a Resend segment for the newsletter, then set `RESEND_NEWSLETTER_SEGMENT_ID` to that segment ID in local and production environments.
 
-Monthly newsletters can be sent from the Resend dashboard as a Broadcast to the newsletter segment. Broadcasts should include the normal unsubscribe link and sender details required for mailing-list compliance.
+Newsletter updates can be sent from the Resend dashboard as a Broadcast to the newsletter segment whenever there is something worth sharing. Broadcasts should include the normal unsubscribe link and sender details required for mailing-list compliance.
 
 ## Deployment
 

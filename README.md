@@ -69,10 +69,13 @@ Create the required environment variables for the contact form before testing su
 
 - `NEXT_PUBLIC_TURNSTILE_SITE_KEY`
 - `TURNSTILE_SECRET_KEY`
-- `RESEND_API_KEY`
+- `RESEND_CONTACT_API_KEY`
+- `RESEND_NEWSLETTER_API_KEY`
 - `RESEND_NEWSLETTER_SEGMENT_ID`
 - `CONTACT_TO_EMAIL`
 - `CONTACT_FROM_EMAIL`
+
+Use a Resend send-only key for `RESEND_CONTACT_API_KEY`. Use a Resend full-access key for `RESEND_NEWSLETTER_API_KEY` because the newsletter signup creates contacts and adds them to a segment.
 
 ## Newsletter
 

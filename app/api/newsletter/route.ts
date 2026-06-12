@@ -11,6 +11,14 @@ function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+function logResendError(action: string, error: { name: string; message: string; statusCode: number | null }) {
+  console.error(`Newsletter ${action} failed:`, {
+    name: error.name,
+    message: error.message,
+    statusCode: error.statusCode,
+  });
+}
+
 function getClientIp(req: Request) {
   const xff = req.headers.get("x-forwarded-for");
   if (xff) return xff.split(",")[0]?.trim() || "";
@@ -81,7 +89,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: ts.error }, { status: 403 });
     }
 
-    const resendApiKey = process.env.RESEND_API_KEY;
+    const resendApiKey = process.env.RESEND_NEWSLETTER_API_KEY;
     const segmentId = process.env.RESEND_NEWSLETTER_SEGMENT_ID;
 
     if (!resendApiKey || !segmentId) {
@@ -100,12 +108,10 @@ export async function POST(req: Request) {
         firstName,
         lastName,
         unsubscribed: false,
-        properties: {
-          source: "blog",
-        },
       });
 
       if (update.error) {
+        logResendError("contact update", update.error);
         return NextResponse.json(
           { error: "Could not update your subscription. Please try again." },
           { status: 502 }
@@ -117,18 +123,17 @@ export async function POST(req: Request) {
         firstName,
         lastName,
         unsubscribed: false,
-        properties: {
-          source: "blog",
-        },
       });
 
       if (createContact.error) {
+        logResendError("contact create", createContact.error);
         return NextResponse.json(
           { error: "Could not sign you up. Please try again." },
           { status: 502 }
         );
       }
     } else if (existingContact.error) {
+      logResendError("contact lookup", existingContact.error);
       return NextResponse.json(
         { error: "Could not check your subscription. Please try again." },
         { status: 502 }
@@ -137,6 +142,7 @@ export async function POST(req: Request) {
 
     const contactSegments = await resend.contacts.segments.list({ email });
     if (contactSegments.error) {
+      logResendError("segment lookup", contactSegments.error);
       return NextResponse.json(
         { error: "Could not check newsletter segments. Please try again." },
         { status: 502 }
@@ -148,6 +154,7 @@ export async function POST(req: Request) {
     if (!alreadyInSegment) {
       const addSegment = await resend.contacts.segments.add({ email, segmentId });
       if (addSegment.error) {
+        logResendError("segment add", addSegment.error);
         return NextResponse.json(
           { error: "Could not add you to the newsletter. Please try again." },
           { status: 502 }

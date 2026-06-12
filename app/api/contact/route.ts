@@ -109,11 +109,11 @@ export async function POST(req: Request) {
     const to = process.env.CONTACT_TO_EMAIL;
     const from = process.env.CONTACT_FROM_EMAIL;
 
-    const resendApiKey = process.env.RESEND_API_KEY;
+    const resendApiKey = process.env.RESEND_CONTACT_API_KEY;
 
     if (!to || !from || !resendApiKey) {
       return NextResponse.json(
-        { error: "Server not configured (missing email env vars)." },
+        { error: "Server not configured (missing contact email env vars)." },
         { status: 500 }
       );
     }

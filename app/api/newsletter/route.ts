@@ -52,14 +52,24 @@ export async function POST(req: Request) {
     }
 
     const email = String(body.email ?? "").trim().toLowerCase();
+    const firstName = String(body.firstName ?? "").trim();
+    const lastName = String(body.lastName ?? "").trim();
     const turnstileToken = String(body.turnstileToken ?? "").trim();
 
     if (!turnstileToken) {
       return NextResponse.json({ error: "Please complete the verification." }, { status: 400 });
     }
 
-    if (hasControlChars(email)) {
+    if (hasControlChars(email) || hasControlChars(firstName) || hasControlChars(lastName)) {
       return NextResponse.json({ error: "Invalid characters." }, { status: 400 });
+    }
+
+    if (firstName.length < 1 || firstName.length > 80) {
+      return NextResponse.json({ error: "First name is invalid." }, { status: 400 });
+    }
+
+    if (lastName.length < 1 || lastName.length > 80) {
+      return NextResponse.json({ error: "Last name is invalid." }, { status: 400 });
     }
 
     if (!isValidEmail(email) || email.length > 254) {
@@ -85,25 +95,27 @@ export async function POST(req: Request) {
 
     const existingContact = await resend.contacts.get({ email });
     if (existingContact.data) {
-      if (existingContact.data.unsubscribed) {
-        const update = await resend.contacts.update({
-          email,
-          unsubscribed: false,
-          properties: {
-            source: "blog",
-          },
-        });
+      const update = await resend.contacts.update({
+        email,
+        firstName,
+        lastName,
+        unsubscribed: false,
+        properties: {
+          source: "blog",
+        },
+      });
 
-        if (update.error) {
-          return NextResponse.json(
-            { error: "Could not update your subscription. Please try again." },
-            { status: 502 }
-          );
-        }
+      if (update.error) {
+        return NextResponse.json(
+          { error: "Could not update your subscription. Please try again." },
+          { status: 502 }
+        );
       }
     } else if (existingContact.error && existingContact.error.name === "not_found") {
       const createContact = await resend.contacts.create({
         email,
+        firstName,
+        lastName,
         unsubscribed: false,
         properties: {
           source: "blog",

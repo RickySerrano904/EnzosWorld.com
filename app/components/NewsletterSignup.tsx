@@ -7,6 +7,8 @@ import { CheckCircle2, LoaderCircle, Mail, Send } from "lucide-react";
 type SubmissionState = "idle" | "success" | "error";
 
 export default function NewsletterSignup() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
   const [turnstileToken, setTurnstileToken] = useState("");
@@ -17,8 +19,14 @@ export default function NewsletterSignup() {
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
 
   const canSubmit = useMemo(() => {
-    return !sending && email.trim().includes("@") && !!turnstileToken;
-  }, [email, sending, turnstileToken]);
+    return (
+      !sending &&
+      firstName.trim().length >= 1 &&
+      lastName.trim().length >= 1 &&
+      email.trim().includes("@") &&
+      !!turnstileToken
+    );
+  }, [email, firstName, lastName, sending, turnstileToken]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -31,6 +39,8 @@ export default function NewsletterSignup() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          firstName,
+          lastName,
           email,
           website,
           turnstileToken,
@@ -47,6 +57,8 @@ export default function NewsletterSignup() {
 
       setSubmissionState("success");
       setMessage("You're on the list for Enzo's monthly field report.");
+      setFirstName("");
+      setLastName("");
       setEmail("");
       setWebsite("");
       setTurnstileToken("");
@@ -78,6 +90,32 @@ export default function NewsletterSignup() {
             autoComplete="off"
             aria-hidden="true"
           />
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            <label className="block space-y-2">
+              <span className="text-sm font-semibold">First name</span>
+              <input
+                value={firstName}
+                onChange={(event) => setFirstName(event.target.value)}
+                placeholder="Enzo"
+                required
+                maxLength={80}
+                className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-(--primary)/40"
+              />
+            </label>
+
+            <label className="block space-y-2">
+              <span className="text-sm font-semibold">Last name</span>
+              <input
+                value={lastName}
+                onChange={(event) => setLastName(event.target.value)}
+                placeholder="Fan"
+                required
+                maxLength={80}
+                className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-(--primary)/40"
+              />
+            </label>
+          </div>
 
           <label className="block space-y-2">
             <span className="text-sm font-semibold">Email</span>

@@ -36,7 +36,7 @@ Enzo's World is designed to feel like a small, complete home base for everything
 
 2. Blog: Lighthearted MDX posts written from Enzo's perspective, rendered through modern Next.js routing and reusable page layouts.
 
-3. Newsletter: A Turnstile-protected blog signup form that adds subscribers to a Resend segment for monthly updates.
+3. Newsletter: A Turnstile-protected blog signup form that collects subscriber names and adds contacts to a Resend segment for monthly updates.
 
 4. Merch: A dedicated merch page that sends visitors to Enzo's official Fourthwall storefront at `shop.enzosworld.com`.
 

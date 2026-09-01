@@ -10,6 +10,10 @@ type BlogIndexProps = {
 
 export function BlogIndex({ config }: BlogIndexProps) {
   const readLabel = config.readLabel ?? "Read";
+  const posts = [...config.posts].sort(
+    (firstPost, secondPost) =>
+      new Date(secondPost.date).getTime() - new Date(firstPost.date).getTime(),
+  );
 
   return (
     <main className="space-y-6">
@@ -24,7 +28,7 @@ export function BlogIndex({ config }: BlogIndexProps) {
       </header>
 
       <ul className="grid min-w-0 gap-4">
-        {config.posts.map((post) => (
+        {posts.map((post) => (
           <li key={post.slug} className="min-w-0">
             <Link
               href={`${config.basePath}/${post.slug}`}
